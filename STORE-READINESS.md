@@ -18,7 +18,7 @@ Gaps closed against `PRD_StayActive_Extension.md`:
 | FR7 allowed sites | Per-origin toggles for `teams.microsoft.com` and `teams.cloud.microsoft`. |
 | README | 60-minute acceptance test plan and honest limits added; merge conflict resolved. |
 | Logging race | Content script now forwards log entries to the service worker (single writer), fixing lost diagnostic entries. |
-| Brand | New Emerald & Gold mark across icons, brand sheet, lockups, and store images. |
+| Brand | New Crimson & Cream stencil-K mark across icons, brand sheet, lockups, and store images. |
 
 Intentional deviations from the PRD: `scripting` is not requested (unused), and `nativeMessaging` is absent from the store build instead of optional.
 
@@ -28,8 +28,8 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 160.7 KB | `7FB11F84FF104D8C0EA7ADF2E3D163372E3F5BB4F5F63C6D329BC40572133721` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 177.7 KB | `853B9B72790785BC1681EB793F887D69F07D0E6AEF501C97AC9557196F1604CA` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 81.3 KB | `5B2C2E95C7BC8EC72EE15F042658B6545A9B52BE1FDE37AF9E44CC5716734413` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 98.3 KB | `0584E2284CDEE2BDB099F4A2DF99D5C969AD3AA4A8FB4CB09212C81A7E2D838A` |
 
 Unpacked staging folders:
 
@@ -195,7 +195,7 @@ Optional small promo tile (440×280, exact):
 
 - `store-assets/keepactive-promo-440x280.png`
 
-The four store images were updated in place to the new Emerald & Gold logo (only the logo pixels changed; `store-assets/patch-logo.html` did the replacement) and saved as 24-bit PNG without alpha. Screenshot 3 still shows the pre-1.1 Teams Web wording ("It never clicks or types text"); recapture the setup guide on Windows before submission, or omit that screenshot.
+The four store images were updated in place to the new Crimson & Cream logo (only the logo pixels changed; `store-assets/patch-logo.html` did the replacement) and saved as 24-bit PNG without alpha. Screenshot 3 still shows the pre-1.1 Teams Web wording ("It never clicks or types text"); recapture the setup guide on Windows before submission, or omit that screenshot.
 
 The screenshots contain no native-helper UI, so they match the browser-only store package.
 

@@ -28,13 +28,13 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 84.4 KB | `7AF5DAFB236497BB47846E66A6F315CAC9F858F422F3C3E8691C50A061D2CDC8` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 101.3 KB | `C5AE5E049F0B1D5A5F9F68D78888AFE9959A6F0600A1F4B48B8253581AC19AFD` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 85.8 KB | `ABDE44395A015F05759CBD41577DB1BFD92AD292CFA316DACAB0945FFFACE60C` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 102.8 KB | `B49A646102C07E98F1009BEC4E8EF89C02E1B716A64A3346BD41FC3F1B443E41` |
 
 Unpacked staging folders:
 
-- `dist/keepactive-store-1.1.0/` — 31 files
-- `dist/keepactive-full-1.1.0/` — 37 files
+- `dist/keepactive-store-1.1.0/` — 32 files
+- `dist/keepactive-full-1.1.0/` — 38 files
 
 The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`, icon generators, or non-PNG icon assets. The full ZIP declares `nativeMessaging` and includes the optional desktop helper; it is for local/developer installation only.
 
@@ -46,7 +46,7 @@ The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`
 
 | Check | Result |
 |---|---|
-| `node tools/test-storage.js` | **18/18 pass** — schedule math, overnight shifts, normalization, effective-state logic, Teams Web options |
+| `node tools/test-storage.js` | **27/27 pass**: schedule math, overnight shifts, normalization, effective-state logic, Teams Web options, rating-prompt rules |
 | `py -3 tools/test-native.py` | **8/8 pass** — native framing, `READY`, `PING`, `CONFIG`, unknown command, `STOP`, clean exit |
 | `powershell -File tools/build.ps1` | Pass — MV3 manifests, version match, icon references, content-script paths, no remote URLs, ZIP layout, `node --check` on 8 JS files |
 | Store CDP smoke test | **25/25 pass**, repeated 3 times for stability |
@@ -73,22 +73,24 @@ The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`
 
 ## 3. Chrome Web Store listing copy
 
-### Name
+The store takes the item title and summary from `manifest.json`. The title adds a short, descriptive phrase people search for ("keep screen awake", "stay active") without keyword stuffing. Microsoft's trademark stays out of the title and appears only where the description needs it to explain what the extension works with.
+
+### Name (43 characters; limit 75)
 
 ```text
-KeepActive
+KeepActive: Keep Screen Awake & Stay Active
 ```
 
-### Summary (113 characters; limit 132)
+### Summary (120 characters; limit 132)
 
 ```text
-Keeps your display awake and sends small activity events to Microsoft Teams on the web. Local-only, no telemetry.
+Keep your screen awake and send gentle activity to Microsoft Teams on the web. Work schedules, Smart Pause, no tracking.
 ```
 
 ### Category
 
 ```text
-Productivity
+Productivity → Tools (choose "Workflow & Planning" if "Tools" is not offered)
 ```
 
 ### Language
@@ -100,32 +102,41 @@ English (United States)
 ### Detailed description
 
 ```text
-KeepActive is a local-only Chrome extension for long passive sessions: presentations, dashboards, monitoring screens, downloads, and data rendering.
+Stop your screen from sleeping in the middle of a presentation, a dashboard or a long download. KeepActive keeps your display awake while Chrome is running and sends gentle, human-paced activity to Microsoft Teams on the web, only on the schedule you choose. The moment you touch your keyboard or mouse, it steps aside.
+
+WHY PEOPLE USE IT
+
+• Presentations, dashboards and monitoring screens that must stay on.
+• Long downloads, renders, uploads and reading sessions.
+• Keeping a Teams web tab from going idle during long passive work sessions.
 
 WHAT IT DOES
 
-• Display keep-awake — asks Chrome to keep the display on while KeepActive is active and Chrome is running.
-• Teams Web activity — sends small, randomized pointer-move, Shift-key, and focus events, plus an occasional click on the empty page background, to top-level Microsoft Teams Web tabs. It never clicks buttons, links, or inputs, never types text, never reads messages, and never changes Teams content. Background clicks and each Teams site can be turned off.
-• Automated shifts — engages only during the workdays and hours you choose, including overnight schedules.
-• Smart Pause — uses the operating system idle signal to pause while you are actively using the computer, then resume after your chosen idle delay.
-• Manual pause/resume, an Alt+Shift+S hotkey, a session safety limit, and local diagnostics.
+• Keep screen awake: asks Chrome to keep the display on while KeepActive is active and Chrome is running.
+• Teams on the web activity: small, randomized pointer moves, Shift taps and focus pings every 60–150 seconds by default, plus an optional click on the empty page background. It never clicks buttons, links or inputs, never types text, never reads messages and never changes Teams content. Background clicks and each Teams site can be turned off.
+• Work schedules: runs only on the days and hours you choose, including overnight shifts.
+• Smart Pause: uses your computer's idle signal to pause while you are working, then resumes after your chosen idle delay.
+• One-click toolbar control, an Alt+Shift+S shortcut, a session safety limit and local diagnostics.
 
-WHAT IT DOES NOT DO
+HOW TO USE
 
-• No telemetry, analytics, advertising, accounts, tracking cookies, remote fonts, or third-party requests.
-• No native app, installer, or desktop control in this package.
-• Does not guarantee a Microsoft Teams presence state. Microsoft controls presence.
-• Does not bypass screen lock, Intune, Group Policy, MDM, EDR, or any other corporate control.
+1. Pin KeepActive to the toolbar and switch it on.
+2. Keep a Microsoft Teams web tab open (a normal tab works best).
+3. Optional: set a work schedule and Smart Pause delay in the Control Deck.
 
-REQUIREMENTS
+PRIVACY FIRST
 
-• Chrome 116 or newer.
-• Chrome must be running for display keep-awake.
-• Keep a Microsoft Teams Web tab open for Teams Web activity. Chrome may throttle timers in background tabs, so a normal open tab is recommended.
+• No accounts, analytics, ads, tracking or third-party requests.
+• Settings and diagnostics stay in your browser profile (chrome.storage.local).
+• No native app or installer in this package.
 
-PRIVACY
+GOOD TO KNOW
 
-Preferences and diagnostics stay in chrome.storage.local inside your browser profile. See the privacy policy for details.
+• KeepActive does not guarantee a Microsoft Teams presence status. Microsoft controls presence.
+• It does not bypass screen lock, Intune, Group Policy, MDM, EDR or other company controls.
+• Requires Chrome 116 or newer. Chrome must be running for keep-awake.
+
+Microsoft and Microsoft Teams are trademarks of Microsoft Corporation. KeepActive is not affiliated with or endorsed by Microsoft.
 ```
 
 ### Single-purpose statement
@@ -133,6 +144,16 @@ Preferences and diagnostics stay in chrome.storage.local inside your browser pro
 ```text
 KeepActive keeps the display awake and generates small, periodic activity events in Microsoft Teams Web tabs according to a user-configured schedule and pause rules.
 ```
+
+### Video and promo images
+
+- **YouTube video:** upload `store-assets/keepactive-promo-1080p.mp4` to YouTube (Public or Unlisted), then paste its URL in the listing's **Global promo video** field.
+- **Small promo tile (440×280):** `store-assets/keepactive-promo-440x280.png`.
+- **Marquee promo tile (1400×560):** `store-assets/keepactive-marquee-1400x560.png`. It's used only if Chrome editors feature the item, but it's required to be considered.
+
+### Rating prompt
+
+Starting with this release, the popup asks once for a rating. It appears only for store installs, at least 7 days after the popup was first opened and after 2 hours of active use. **Rate it** opens the listing's review page. **Later** snoozes for 30 days, a second **Later** stops it, and **No thanks** stops it immediately. It offers no rewards, which store policy forbids, and sends nothing anywhere. The logic is in `lib/rating.js`, and the tests are in `tools/test-storage.js`.
 
 ---
 
@@ -292,7 +313,7 @@ Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/
 - [x] Permission justifications and single-purpose statement written (sections 3–4).
 - [x] No shipped `console.*`, `debugger`, `eval`/remote code, remote assets or hardcoded secrets; page CSP `script-src 'self'`.
 - [x] Production build (`tools/build.ps1`) passes all manifest/ZIP/syntax assertions.
-- [x] Automated tests: storage/schedule 18/18, native helper protocol, store smoke 25/25, Teams Web stub e2e (all pass), run against a fresh unzip of the store ZIP.
+- [x] Automated tests: storage/schedule/rating 27/27, native helper protocol, store smoke 25/25, Teams Web stub e2e (all pass), run against a fresh unzip of the store ZIP.
 - [x] Fresh unpacked install of the store ZIP loads with no page errors.
 - [x] 128 px icons padded to Chrome guidance; screenshots 1280×800 and promo 440×280 recaptured from the packaged build.
 - [x] Privacy policy names the contact email; `docs/` prepared for GitHub Pages.

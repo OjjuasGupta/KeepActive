@@ -50,6 +50,7 @@ function Copy-StoreFiles {
         'lib\random.js',
         'lib\logger.js',
         'lib\storage.js',
+        'lib\rating.js',
         'popup\popup.html',
         'popup\popup.css',
         'popup\popup.js',
@@ -125,6 +126,7 @@ function Assert-NoRemoteAssets {
             $url = $match.Value.TrimEnd('.', ',', ';', ')')
             $allowed = $url -like 'https://teams.microsoft.com/*' -or
                 $url -like 'https://teams.cloud.microsoft/*' -or
+                $url -like 'https://chromewebstore.google.com/detail/*' -or  # rating link opened in a tab, never fetched
                 ($Variant -eq 'full' -and $url -like 'https://www.python.org/*')
             if (-not $allowed) {
                 throw "Unexpected remote URL in $($file.FullName): $url"

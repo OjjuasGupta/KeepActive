@@ -7,7 +7,7 @@
  * launch Chrome with LANG=en_GB.UTF-8 --lang=en-GB so time fields render 24h.
  *
  * Usage: node tools/capture-store-assets.mjs [port]
- * Writes store-assets/raw/*.png and the final 1280x800 / 440x280 images.
+ * Writes store-assets/raw/*.png and the final 1280x800, 440x280 and 1400x560 images.
  */
 
 import fs from 'node:fs';
@@ -118,6 +118,7 @@ await shoot(await open(file('store-assets/compose-popup.html'), 1280, 800), 'sto
 fs.copyFileSync(path.join(root, 'store-assets/raw/options-1280x800.png'), path.join(root, 'store-assets/keepactive-2-control-deck-1280x800.png'));
 fs.copyFileSync(path.join(root, 'store-assets/raw/welcome-1280x800.png'), path.join(root, 'store-assets/keepactive-3-setup-guide-1280x800.png'));
 await shoot(await open(file('store-assets/compose-promo.html'), 440, 280), 'store-assets/keepactive-promo-440x280.png');
+await shoot(await open(file('store-assets/compose-marquee.html'), 1400, 560), 'store-assets/keepactive-marquee-1400x560.png');
 
 await evaluate((await open(ext('options/options.html'), 800, 600)).sessionId, `chrome.runtime.sendMessage({ type: 'RESET_ALL' })`);
 process.exit(0);

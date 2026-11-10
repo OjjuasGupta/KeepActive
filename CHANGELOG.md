@@ -12,8 +12,11 @@ All notable changes to KeepActive are recorded here. Versions match `manifest.js
 - Diagnostic Console entry for every activity cycle.
 - Privacy policy contact section (`filmfrenzy777@gmail.com`); public copy published from `docs/` via GitHub Pages.
 - Landing page in `docs/` with a self-hosted 3D scene (`site/`), reduced-motion fallback and social preview image.
+- One-time rating prompt in the popup (store installs only, after 7 days and 2 hours of use; Later/No thanks respected; `lib/rating.js`).
+- Marquee promo tile (1400×560) and a 36-second 1080p promo video (`tools/render-promo-video.mjs`).
 
 ### Changed
+- Store title is now "KeepActive: Keep Screen Awake & Stay Active", with a new summary and detailed description for search.
 - New Crimson & Cream "Presence" logo; toolbar badge shows active, paused and off states.
 - 128 px icons now follow Chrome Web Store guidance (96 px artwork, 16 px transparent padding).
 - Pointer events target the element under the pointer instead of the document.

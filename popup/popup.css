@@ -522,3 +522,34 @@ footer a {
 footer a:hover {
   color: var(--text-primary);
 }
+
+/* Rating prompt (store installs only, after a week of real use) */
+.rate-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 10px 11px;
+  border-radius: 9px;
+  background: var(--emerald-subtle);
+  border: 1px solid var(--emerald-border);
+}
+.rate-card[hidden] { display: none; }
+.rate-text { display: flex; flex-direction: column; gap: 2px; font-size: 11.5px; color: var(--text-secondary); }
+.rate-text strong { color: var(--text-primary); font-size: 12px; }
+.rate-actions { display: flex; gap: 6px; }
+.rate-btn {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.rate-btn:hover { border-color: var(--border-strong); }
+.rate-btn.primary { background: var(--emerald-dark); border-color: var(--emerald-dark); color: #fff; }
+.rate-btn.primary:hover { background: #047857; }

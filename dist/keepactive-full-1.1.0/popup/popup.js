@@ -349,7 +349,35 @@
     });
   }
 
-  loadState().then(startUptimeTimer);
+  async function setupRatingPrompt() {
+    const R = self.SARating;
+    const card = document.getElementById('rateCard');
+    if (!R || !card || !hasChromeRuntime() || !chrome.storage || !chrome.management) return;
+    const now = Date.now();
+    const stored = await chrome.storage.local.get(R.KEY);
+    let record = R.normalize(stored[R.KEY], now);
+    if (!stored[R.KEY]) await chrome.storage.local.set({ [R.KEY]: record });
+    const me = await chrome.management.getSelf();
+    if (!R.shouldAsk(record, now, me.installType, state.totalActiveMs)) return;
+
+    const save = async next => {
+      record = next;
+      card.hidden = true;
+      await chrome.storage.local.set({ [R.KEY]: record });
+    };
+    document.getElementById('rateYes').addEventListener('click', async () => {
+      await save(R.finish(record));
+      chrome.tabs.create({ url: R.reviewUrl(chrome.runtime.id) });
+    });
+    document.getElementById('rateLater').addEventListener('click', () => save(R.later(record, Date.now())));
+    document.getElementById('rateNo').addEventListener('click', () => save(R.finish(record)));
+    card.hidden = false;
+  }
+
+  loadState()
+    .then(startUptimeTimer)
+    .then(setupRatingPrompt)
+    .catch(() => {});
 
   window.addEventListener('unload', () => {
     if (uptimeTimer) clearInterval(uptimeTimer);

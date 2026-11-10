@@ -18,7 +18,7 @@ Gaps closed against `PRD_StayActive_Extension.md`:
 | FR7 allowed sites | Per-origin toggles for `teams.microsoft.com` and `teams.cloud.microsoft`. |
 | README | 60-minute acceptance test plan and honest limits added; merge conflict resolved. |
 | Logging race | Content script now forwards log entries to the service worker (single writer), fixing lost diagnostic entries. |
-| Brand | New Crimson & Cream stencil-K mark across icons, brand sheet, lockups, and store images. |
+| Brand | New Crimson & Cream "Presence" mark (disc + status badge; badge shows active / paused / off) across icons, brand sheet, lockups, and store images. |
 
 Intentional deviations from the PRD: `scripting` is not requested (unused), and `nativeMessaging` is absent from the store build instead of optional.
 
@@ -28,8 +28,8 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 81.3 KB | `5B2C2E95C7BC8EC72EE15F042658B6545A9B52BE1FDE37AF9E44CC5716734413` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 98.3 KB | `0584E2284CDEE2BDB099F4A2DF99D5C969AD3AA4A8FB4CB09212C81A7E2D838A` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 83.6 KB | `8DBCFFF39AA0EFDB452940B9F31F65C7460F7A8C15223DF81E0BA0FFC9427BAB` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 100.5 KB | `27937224B8B5EE60153384976B4D42BFC70D2E0FD641B2171CAF27FED0A411AD` |
 
 Unpacked staging folders:
 

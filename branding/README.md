@@ -1,10 +1,10 @@
 # KeepActive brand assets
 
-The KeepActive identity is the **Crimson & Cream** mark: a flat, stencil-cut
-K. A solid stem and a single mitred chevron are separated by a thin cut of
-negative space, set in cream on a crimson superellipse tile. There are no
-glows, bevels or drop shadows. It is built to stay legible from the 16 px
-Chrome toolbar icon up to the store listing.
+The KeepActive identity is the **Presence** mark: a cream disc with a status
+badge cut into its upper-right shoulder, on a crimson superellipse tile. It
+abstracts the universal "available" indicator. The design is flat, with no
+letterform, glow or bevel, and stays legible from the 16 px Chrome toolbar
+icon up to the store listing.
 
 ## Files
 
@@ -18,28 +18,30 @@ Chrome toolbar icon up to the store listing.
 | `keepactive-lockup-crimson.png` | Lockup on the brand crimson background |
 | `keepactive-brand-sheet.png` | 2400 × 1500 brand presentation: mark, lockup, states, sizes, palette |
 | `render.html` | Exact SVG/canvas renderer used to export the PNG icon set |
+| `concepts.html` | The three symbol concepts reviewed (Awake, Presence, Steady pulse) |
 | `preview.html` | Toolbar and pixel-level QA sheet |
 
-The production icons live in `../icons/`:
+## States
 
-- `icon16/32/48/128.png` — default brand icon (same as active)
-- `icon-green-16/32/48/128.png` — active state (crimson tile)
-- `icon-green-dim-16/32/48/128.png` — paused or off-schedule (stone tile)
-- `icon-red-16/32/48/128.png` — disabled (charcoal tile, dimmed mark)
+The badge carries the toolbar state, so the icon is readable without colour:
+
+| State | Icon files | Tile | Badge |
+|---|---|---|---|
+| Active | `icon16/32/48/128.png`, `icon-green-*.png` | Crimson | Solid dot |
+| Paused / off-schedule | `icon-green-dim-*.png` | Stone | Ring |
+| Disabled | `icon-red-*.png` | Charcoal, dimmed disc | Empty notch |
 
 The `green` / `dim` / `red` file names are kept so `../background.js` needs no
 changes. They name the states, not the colours.
 
 ## Optical sizing
 
-- **48 / 128 px and larger**: full proportions, plus a faint vertical tile
-  gradient and a top-edge highlight.
-- **32 px**: heavier stem and chevron, a wider cut, and a slightly larger mark.
-  The highlight is dropped.
-- **16 px**: heavier again, with a cut wide enough (about 1 px) to stay open on
-  the toolbar.
-- The tile is a true superellipse (n = 5), not a rounded rectangle. The mark
-  is centred on its full width, stem to arm tips.
+- **48 / 128 px and larger**: full proportions, a faint vertical tile gradient,
+  and a top-edge highlight.
+- **32 px**: a larger disc and badge, a wider notch, no highlight.
+- **16 px**: larger again, with a notch wide enough to keep the badge
+  visibly separate on the toolbar.
+- The tile is a true superellipse (n = 5), not a rounded rectangle.
 
 ## Palette
 

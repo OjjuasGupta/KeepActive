@@ -7,27 +7,27 @@
 <body>
 <script>
   /*
-   * Production renderer for the KeepActive "Crimson & Cream" mark.
+   * Production renderer for the KeepActive "Presence" mark.
    *
-   * A flat, stencil-cut K: a solid stem and a single mitred chevron separated
-   * by a hairline of negative space, in cream on a crimson superellipse tile.
-   * No glows, bevels or drop shadows; only a near-imperceptible tile gradient
-   * and a top-edge highlight at 48 px and above.
+   * A cream disc with a status badge cut into its upper-right shoulder, on a
+   * crimson superellipse tile. The badge carries the state:
+   *   active  -> solid dot   (crimson tile)
+   *   paused  -> ring        (stone tile)
+   *   off     -> empty notch (charcoal tile, dimmed disc)
    *
-   * Optical sizes: 16/32 px use heavier strokes, a wider cut and a slightly
-   * larger mark so the gap survives toolbar rasterization.
+   * Flat by design: one subtle vertical tile gradient and, at 48 px and up,
+   * a faint top-edge highlight. 16/32 px use a larger disc and wider notch so
+   * the badge stays separated after toolbar rasterization.
    */
 
+  const CREAM = '#F6EDDF';
   const PALETTES = {
-    // Active
-    green: { top: '#B02536', bottom: '#8A1626', mark: '#F6EDDF', markOpacity: 1 },
-    // Paused / off-schedule
-    dim: { top: '#9C9084', bottom: '#7D7268', mark: '#F6EDDF', markOpacity: 0.92 },
-    // Disabled
-    red: { top: '#3D3532', bottom: '#2A2422', mark: '#F6EDDF', markOpacity: 0.55 }
+    green: { top: '#B02536', bottom: '#8A1626', mark: CREAM, opacity: 1, badge: 'dot' },
+    dim: { top: '#9C9084', bottom: '#7D7268', mark: CREAM, opacity: 0.95, badge: 'ring' },
+    red: { top: '#3D3532', bottom: '#2A2422', mark: CREAM, opacity: 0.6, badge: 'none' }
   };
 
-  // Apple-style superellipse tile, |x|^n + |y|^n = r^n.
+  // Superellipse tile, |x|^n + |y|^n = r^n.
   function squirclePath(cx, cy, r, n = 5, steps = 192) {
     const pts = [];
     for (let i = 0; i < steps; i++) {
@@ -40,41 +40,26 @@
     return `M ${pts.join(' L ')} Z`;
   }
 
-  /**
-   * Stem + chevron K, centred on (256,256).
-   * s = stem width, w = chevron band width, g = cut between them, h = cap height.
-   */
-  function monogram({ s, w, g, h }) {
-    const top = 256 - h / 2, bottom = 256 + h / 2;
-    const slope = 124 / 144;                          // arm dx per dy
-    const sinT = Math.sin(Math.atan2(144, 124));      // arm angle from horizontal
-    const vx = 0;                                     // provisional vertex x
-    const miterLeft = vx - (w / 2) / sinT;
-    const stemRight = miterLeft - g;
-    const stemLeft = stemRight - s;
-    const right = vx + (h / 2) * slope + (w / 2) / sinT;
-    const dx = 256 - (stemLeft + right) / 2;          // centre the whole mark
-
-    const X = v => (v + dx).toFixed(2);
-    const ext = 40;                                   // arms overshoot, then clip flat
-    const armDx = (h / 2 + ext) * slope;
-    return `
-      <clipPath id="cap"><rect x="0" y="${top}" width="512" height="${h}"/></clipPath>
-      <rect x="${X(stemLeft)}" y="${top}" width="${s}" height="${h}" rx="${(s * 0.08).toFixed(2)}"/>
-      <polyline clip-path="url(#cap)" fill="none" stroke-width="${w}" stroke-linejoin="miter" stroke-miterlimit="8"
-        points="${X(vx + armDx)},${top - ext} ${X(vx)},256 ${X(vx + armDx)},${bottom + ext}"/>`;
+  function geometry(size) {
+    if (size <= 16) return { R: 166, cx: 242, cy: 270, cut: 82, dot: 50, ring: 22 };
+    if (size <= 32) return { R: 156, cx: 244, cy: 268, cut: 74, dot: 46, ring: 20 };
+    return { R: 146, cx: 240, cy: 272, cut: 66, dot: 40, ring: 16 };
   }
 
   function buildSvg(state, size) {
     const p = PALETTES[state] || PALETTES.green;
-    const tiny = size <= 16;
-    const compact = size <= 32;
+    const g = geometry(size);
+    const bx = (g.cx + g.R * 0.72).toFixed(2);
+    const by = (g.cy - g.R * 0.72).toFixed(2);
 
-    const k = tiny ? { s: 78, w: 84, g: 40, h: 288 }
-      : compact ? { s: 70, w: 74, g: 30, h: 272 }
-      : { s: 58, w: 60, g: 22, h: 236 };
+    let badge = '';
+    if (p.badge === 'dot') {
+      badge = `<circle cx="${bx}" cy="${by}" r="${g.dot}" fill="${p.mark}"/>`;
+    } else if (p.badge === 'ring') {
+      badge = `<circle cx="${bx}" cy="${by}" r="${g.dot - g.ring / 2}" fill="none" stroke="${p.mark}" stroke-width="${g.ring}"/>`;
+    }
 
-    const highlight = compact ? '' : `
+    const highlight = size <= 32 ? '' : `
       <path d="${squirclePath(256, 256, 231)}" fill="none" stroke="url(#hl)" stroke-width="3"/>`;
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
@@ -85,12 +70,16 @@
         <linearGradient id="hl" x1="0" y1="24" x2="0" y2="200" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
         </linearGradient>
+        <mask id="notch">
+          <rect width="512" height="512" fill="#FFFFFF"/>
+          <circle cx="${bx}" cy="${by}" r="${g.cut}" fill="#000000"/>
+        </mask>
       </defs>
       <path d="${squirclePath(256, 256, 232)}" fill="url(#bg)"/>
       ${highlight}
-      <g fill="${p.mark}" stroke="${p.mark}" opacity="${p.markOpacity}">
-        <g stroke="none">${monogram(k).split('<polyline')[0]}</g>
-        <polyline${monogram(k).split('<polyline')[1]}
+      <g opacity="${p.opacity}">
+        <circle cx="${g.cx}" cy="${g.cy}" r="${g.R}" fill="${p.mark}" mask="url(#notch)"/>
+        ${badge}
       </g>
     </svg>`;
   }

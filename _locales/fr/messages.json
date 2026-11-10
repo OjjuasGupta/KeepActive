@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive : garder l'écran allumé et rester actif",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Gardez l'écran allumé et envoyez une activité discrète à Microsoft Teams sur le web. Horaires, Smart Pause, sans suivi.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "Activer/désactiver KeepActive",
+    "description": "Keyboard shortcut description."
+  }
+}

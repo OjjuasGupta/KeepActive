@@ -1,0 +1,35 @@
+Cegah layar mati otomatis di tengah presentasi, dasbor, atau unduhan yang panjang. KeepActive menjaga layar tetap menyala selama Chrome berjalan dan mengirim aktivitas yang lembut dengan ritme layaknya manusia ke Microsoft Teams versi web, hanya sesuai jadwal yang Anda pilih. Begitu Anda menyentuh keyboard atau mouse, KeepActive langsung mengalah.
+
+KENAPA ORANG MEMAKAINYA
+
+• Presentasi, dasbor, dan layar pemantauan yang harus tetap menyala.
+• Unduhan, render, unggahan, dan sesi membaca yang lama.
+• Menjaga tab Teams web agar tidak idle saat sesi kerja pasif yang panjang.
+
+FITUR UTAMA
+
+• Jaga layar tetap menyala: meminta Chrome agar tetap menyalakan layar selama KeepActive aktif dan Chrome berjalan.
+• Aktivitas Teams di web: gerakan penunjuk kecil yang acak, ketukan Shift, dan ping fokus setiap 60–150 detik secara default, ditambah klik opsional pada latar halaman yang kosong. Tidak pernah mengklik tombol, tautan, atau kolom input, tidak mengetik teks, tidak membaca pesan, dan tidak mengubah konten Teams. Klik latar dan setiap situs Teams dapat dimatikan.
+• Jadwal kerja: berjalan hanya pada hari dan jam yang Anda pilih, termasuk shift malam.
+• Smart Pause: memakai sinyal idle komputer untuk berhenti sejenak saat Anda bekerja, lalu berlanjut setelah jeda idle yang Anda tentukan.
+• Kontrol toolbar sekali klik, pintasan Alt+Shift+S, batas keamanan sesi, dan diagnostik lokal.
+
+CARA MENGGUNAKAN
+
+1. Sematkan KeepActive ke toolbar lalu aktifkan.
+2. Biarkan satu tab web Microsoft Teams tetap terbuka (tab biasa paling cocok).
+3. Opsional: atur jadwal kerja dan jeda Smart Pause di Control Deck.
+
+PRIVASI NOMOR SATU
+
+• Tanpa akun, analitik, iklan, pelacakan, atau permintaan pihak ketiga.
+• Pengaturan dan diagnostik tetap berada di profil browser Anda (chrome.storage.local).
+• Tidak ada aplikasi native atau installer dalam paket ini.
+
+PERLU DIKETAHUI
+
+• KeepActive tidak menjamin status kehadiran Microsoft Teams. Status kehadiran dikendalikan oleh Microsoft.
+• KeepActive tidak melewati kunci layar, Intune, Group Policy, MDM, EDR, atau kontrol perusahaan lainnya.
+• Memerlukan Chrome 116 atau lebih baru. Chrome harus berjalan agar layar tetap menyala.
+
+Microsoft dan Microsoft Teams adalah merek dagang Microsoft Corporation. KeepActive tidak berafiliasi dengan atau didukung oleh Microsoft.

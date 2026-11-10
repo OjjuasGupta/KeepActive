@@ -1,0 +1,35 @@
+Voorkom dat je scherm in slaapstand gaat tijdens een presentatie, een dashboard of een lange download. KeepActive houdt je scherm aan zolang Chrome draait en stuurt rustige, mensachtige activiteit naar Microsoft Teams in de browser, alleen volgens het schema dat jij instelt. Zodra je het toetsenbord of de muis aanraakt, stapt het opzij.
+
+WAAROM MENSEN HET GEBRUIKEN
+
+• Presentaties, dashboards en monitoringschermen die aan moeten blijven.
+• Lange downloads, renders, uploads en leessessies.
+• Voorkomen dat een Teams-tabblad in de browser inactief wordt tijdens lange, passieve werksessies.
+
+WAT HET DOET
+
+• Scherm aan houden: vraagt Chrome om het beeldscherm aan te laten zolang KeepActive actief is en Chrome draait.
+• Activiteit in Teams in de browser: kleine, willekeurige muisbewegingen, Shift-toetsaanslagen en focussignalen om de 60–150 seconden (standaard), plus een optionele klik op de lege paginaachtergrond. Het klikt nooit op knoppen, links of invoervelden, typt nooit tekst, leest nooit berichten en wijzigt nooit Teams-inhoud. Achtergrondklikken en elke Teams-site kunnen worden uitgeschakeld.
+• Werkschema's: draait alleen op de dagen en uren die jij kiest, inclusief nachtdiensten.
+• Smart Pause: gebruikt het inactiviteitssignaal van je computer om te pauzeren terwijl je werkt en hervat na de inactiviteitsvertraging die je hebt gekozen.
+• Bediening met één klik via de werkbalk, sneltoets Alt+Shift+S, een veiligheidslimiet per sessie en lokale diagnostiek.
+
+HOE GEBRUIK JE HET
+
+1. Maak KeepActive vast aan de werkbalk en zet het aan.
+2. Houd een Microsoft Teams-tabblad in de browser open (een gewoon tabblad werkt het beste).
+3. Optioneel: stel in het Control Deck een werkschema en de Smart Pause-vertraging in.
+
+PRIVACY VOOROP
+
+• Geen accounts, analyses, advertenties, tracking of verzoeken aan derden.
+• Instellingen en diagnostiek blijven in je browserprofiel (chrome.storage.local).
+• Geen native app of installatieprogramma in dit pakket.
+
+GOED OM TE WETEN
+
+• KeepActive garandeert geen bepaalde aanwezigheidsstatus in Microsoft Teams. Microsoft bepaalt de aanwezigheid.
+• Het omzeilt geen schermvergrendeling, Intune, Groepsbeleid, MDM, EDR of andere bedrijfsmaatregelen.
+• Vereist Chrome 116 of nieuwer. Chrome moet draaien om het scherm aan te houden.
+
+Microsoft en Microsoft Teams zijn handelsmerken van Microsoft Corporation. KeepActive is niet gelieerd aan Microsoft en wordt niet door Microsoft ondersteund.

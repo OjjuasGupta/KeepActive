@@ -1,0 +1,15 @@
+{
+  "name": "keepactive-site",
+  "private": true,
+  "description": "Landing page source. Builds docs/assets/app.js for GitHub Pages.",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --format=esm --target=es2020 --legal-comments=eof --outfile=../docs/assets/app.js"
+  },
+  "dependencies": {
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

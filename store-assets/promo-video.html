@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KeepActive promo</title>
+<style>
+@font-face{font-family:Fraunces;src:url(../docs/assets/fonts/fraunces.woff2) format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:Fraunces;src:url(../docs/assets/fonts/fraunces-italic.woff2) format("woff2");font-weight:100 900;font-style:italic}
+@font-face{font-family:Inter;src:url(../docs/assets/fonts/inter.woff2) format("woff2");font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#f6f1e7}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#231a18;
+ background:linear-gradient(135deg,#f7f2e8,#f1e8da)}
+.glow{position:absolute;left:0;top:0;border-radius:50%;pointer-events:none}
+#g1{width:1100px;height:1100px;background:radial-gradient(circle,rgba(16,185,129,.18),rgba(16,185,129,0) 65%)}
+#g2{width:1000px;height:1000px;background:radial-gradient(circle,rgba(176,37,54,.14),rgba(176,37,54,0) 65%)}
+.layer{position:absolute;inset:0;opacity:0}
+.abs{position:absolute}
+h1,h2{font-family:Fraunces,serif;font-weight:600;letter-spacing:-.02em}
+.eyebrow{font-size:22px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#059669}
+.cap{position:absolute;left:150px;width:800px}
+.cap h2{font-size:78px;line-height:1.06;margin-top:18px}
+.cap h2 i{font-style:italic;font-weight:500;color:#b02536}
+.cap p{font-size:34px;line-height:1.4;color:#5b4d49;margin-top:30px}
+.shot{position:absolute;border-radius:26px;overflow:hidden;background:#f4efe6;
+ box-shadow:0 60px 120px -30px rgba(35,26,24,.35),0 18px 40px -10px rgba(35,26,24,.18),0 0 0 1px rgba(35,26,24,.08)}
+.shot img{display:block;width:100%;height:100%}
+.pill{display:inline-flex;align-items:center;gap:14px;background:#fff;border:1.5px solid #bfe9d8;border-radius:999px;padding:16px 28px;font-size:28px;font-weight:600;color:#065f46;margin:0 14px 16px 0;box-shadow:0 8px 24px -12px rgba(5,150,105,.4)}
+.pill b{width:14px;height:14px;border-radius:50%;background:#10b981;display:block}
+.key{display:inline-block;font-family:Inter;font-weight:600;font-size:32px;background:#fff;border:1.5px solid #d9cfc0;border-bottom-width:5px;border-radius:12px;padding:8px 22px;margin-right:10px;color:#231a18}
+.card{position:absolute;background:#fff;border-radius:28px;box-shadow:0 50px 100px -30px rgba(35,26,24,.3),0 0 0 1px rgba(35,26,24,.08)}
+</style></head><body>
+<div id="stage">
+ <div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+
+ <div class="layer" id="s1">
+  <img id="mark1" class="abs" src="../docs/assets/mark.svg" style="left:810px;top:210px;width:300px;height:300px;filter:drop-shadow(0 30px 40px rgba(138,22,38,.35))">
+  <h1 id="t1" class="abs" style="left:0;width:1920px;top:550px;text-align:center;font-size:150px;line-height:1">KeepActive</h1>
+  <p id="sub1" class="abs" style="left:0;width:1920px;top:740px;text-align:center;font-size:42px;color:#5b4d49;font-family:Fraunces,serif;font-style:italic">Keep your screen awake. Stay active, quietly.</p>
+ </div>
+
+ <div class="layer" id="s2">
+  <div class="cap" style="top:300px">
+   <div class="eyebrow" id="s2a">Toolbar popup</div>
+   <h2 id="s2b">One click from the <i>toolbar</i></h2>
+   <p id="s2c">Display keep-awake while Chrome runs</p>
+  </div>
+  <div class="shot" id="pop2" style="left:1130px;top:110px;width:596px;height:861px"><img src="raw/popup.png"></div>
+ </div>
+
+ <div class="layer" id="s3">
+  <div class="cap" style="top:290px">
+   <div class="eyebrow" id="s3a">Teams on the web</div>
+   <h2 id="s3b" style="font-size:66px">Small, human-paced activity in <i>Microsoft Teams</i> on the web</h2>
+   <p id="s3c">Randomized every 60–150 seconds</p>
+  </div>
+  <div class="card" id="card3" style="left:1040px;top:230px;width:760px;height:620px;overflow:hidden">
+   <div style="height:64px;background:#f1ebe0;border-bottom:1px solid #e4dccf;display:flex;align-items:center;padding:0 24px;gap:10px">
+    <span style="width:14px;height:14px;border-radius:50%;background:#e3a5ac"></span><span style="width:14px;height:14px;border-radius:50%;background:#ecd9a9"></span><span style="width:14px;height:14px;border-radius:50%;background:#b9e1d0"></span>
+    <span style="margin-left:24px;font-size:20px;color:#6b5d58">Teams on the web</span>
+   </div>
+   <div class="abs" style="left:40px;top:100px;width:680px;height:300px;border-radius:18px;background:#faf7f1;border:1px solid #eadfce"></div>
+   <div class="abs" id="pulse" style="left:0;top:0;width:36px;height:36px;border-radius:50%;border:3px solid #10b981"></div>
+   <svg id="cursor" class="abs" style="left:0;top:0;width:44px;height:44px" viewBox="0 0 24 24"><path d="M4 2l15 9-6.5 1.6L9.6 19z" fill="#231a18" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+   <div class="abs" style="left:40px;top:430px;width:680px;font-size:20px;color:#6b5d58;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Activity timeline</div>
+   <div class="abs" style="left:40px;top:500px;width:680px;height:4px;background:#eadfce;border-radius:2px"></div>
+   <div id="ticks"></div>
+   <div class="abs" id="next3" style="left:40px;top:550px;width:680px;font-size:26px;color:#065f46;font-weight:600">Irregular, human-paced intervals</div>
+  </div>
+ </div>
+
+ <div class="layer" id="s4">
+  <div class="cap" style="top:290px;left:130px;width:700px">
+   <div class="eyebrow" id="s4a">Control Deck</div>
+   <h2 id="s4b" style="font-size:70px">Work schedules and <i>Smart Pause</i></h2>
+   <p id="s4c">Pauses the moment you’re back at the keyboard</p>
+   <div id="s4d" style="margin-top:36px;font-size:30px;color:#5b4d49;display:flex;align-items:center"><span class="key">Alt</span><span class="key">Shift</span><span class="key">S</span><span style="margin-left:10px">toggle on or off in Chrome</span></div>
+  </div>
+  <div class="shot" id="opt4" style="left:900px;top:215px;width:960px;height:600px"><img src="raw/options-1280x800.png"></div>
+ </div>
+
+ <div class="layer" id="s5">
+  <div class="cap" style="top:270px;width:780px;left:130px">
+   <div class="eyebrow" id="s5a">Private by design</div>
+   <h2 id="s5b" style="font-size:74px"><i>100% local.</i><br>No accounts, no analytics, no tracking.</h2>
+   <div id="s5d" style="margin-top:44px"><span class="pill"><b></b>No accounts</span><span class="pill"><b></b>No analytics</span><span class="pill"><b></b>No tracking</span></div>
+  </div>
+  <div class="shot" id="wel5" style="left:930px;top:225px;width:880px;height:550px"><img src="raw/welcome-1280x800.png"></div>
+ </div>
+
+ <div class="layer" id="s6">
+  <img id="mark6" class="abs" src="../docs/assets/mark.svg" style="left:860px;top:230px;width:200px;height:200px;filter:drop-shadow(0 24px 34px rgba(138,22,38,.35))">
+  <h1 id="t6" class="abs" style="left:0;width:1920px;top:470px;text-align:center;font-size:130px;line-height:1">KeepActive</h1>
+  <div id="cta6" class="abs" style="left:660px;width:600px;top:660px;text-align:center;background:#231a18;color:#f6f1e7;border-radius:999px;padding:26px 0;font-size:38px;font-weight:600">Free on the Chrome Web Store</div>
+ </div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const prog=(t,a,b)=>ease((t-a)/(b-a));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const vis=(t,a,b,f=.6)=>Math.min(cl((t-a)/f),cl((b-t)/f));
+const S=[[0,4.3],[4,11.3],[11,18.3],[18,25.3],[25,31.3],[31,36]];
+const ticksAt=[0,2.1,4.6,6.4,9.3,11.4];
+function text(el,t,a,dy=28){const k=prog(t,a,a+.9);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*dy}px)`}
+function tilt(el,t,a,b,fromX,toX,fromY,toY,tx0){
+  const k=prog(t,a,a+1.4), d=cl((t-a)/(b-a));
+  el.style.opacity=k;
+  el.style.transform=`translateX(${lerp(tx0,0,k)}px) perspective(2200px) rotateY(${lerp(fromY,toY,d)}deg) rotateX(${lerp(fromX,toX,d)}deg) scale(${lerp(.94,1,k)})`;
+}
+(function(){let h='';ticksAt.forEach((s,i)=>{h+=`<div class="abs" id="tk${i}" style="left:${40+s/12*680-8}px;top:490px;width:16px;height:24px;border-radius:8px;background:#10b981"></div>`});$('ticks').innerHTML=h})();
+window.render=function(t){
+  $('g1').style.transform=`translate(${1250+Math.sin(t*.3)*80}px,${-250+Math.cos(t*.25)*60}px)`;
+  $('g2').style.transform=`translate(${-300+Math.cos(t*.22)*70}px,${450+Math.sin(t*.28)*60}px)`;
+  S.forEach((r,i)=>{$('s'+(i+1)).style.opacity=vis(t,r[0],r[1])});
+  { const k=prog(t,.2,1.6); const m=$('mark1');
+    m.style.opacity=k; m.style.transform=`scale(${lerp(.5,1,k)}) rotate(${lerp(-12,0,k)}deg)`;
+    text($('t1'),t,1.2,36); text($('sub1'),t,2.0,24);
+    $('s1').style.transform=`scale(${1+prog(t,3.6,4.3)*.04})`; }
+  { text($('s2a'),t,4.4); text($('s2b'),t,4.7); text($('s2c'),t,5.4);
+    const p=$('pop2'); tilt(p,t,4.2,11.3,3,-2,-9,6,220);
+    p.style.transform+=` translateY(${Math.sin(t*1.2)*6}px)`; }
+  { text($('s3a'),t,11.4); text($('s3b'),t,11.7); text($('s3c'),t,12.5);
+    tilt($('card3'),t,11.2,18.3,2,-1,5,-4,200);
+    const l=t-11.6;
+    const pts=[[120,160],[360,230],[560,170],[300,330],[560,340],[150,300]];
+    let seg=0; while(seg<5&&l>ticksAt[seg+1]) seg++;
+    const a=pts[seg], b=pts[Math.min(seg+1,5)];
+    const k=ease((l-ticksAt[seg])/1.1);
+    $('cursor').style.transform=`translate(${lerp(a[0],b[0],k)}px,${lerp(a[1],b[1],k)}px)`;
+    const pi=ticksAt.findIndex(s=>l-s>0&&l-s<1.2);
+    const pp=$('pulse');
+    if(pi>=0){const pk=(l-ticksAt[pi])/1.2;pp.style.opacity=1-pk;pp.style.transform=`translate(${pts[pi][0]-8}px,${pts[pi][1]-8}px) scale(${1+pk*2.4})`}else pp.style.opacity=0;
+    ticksAt.forEach((s,i)=>{const e=$('tk'+i);const on=l>=s;e.style.opacity=on?1:.15;e.style.transform=`scaleY(${on?1+Math.max(0,.6-(l-s))*.8:1})`}); }
+  { text($('s4a'),t,18.4); text($('s4b'),t,18.7); text($('s4c'),t,19.5); text($('s4d'),t,20.6);
+    tilt($('opt4'),t,18.2,25.3,3,-1,6,-6,220); }
+  { text($('s5a'),t,25.4); text($('s5b'),t,25.7); text($('s5d'),t,27.0);
+    tilt($('wel5'),t,25.2,31.3,2,-1,-6,5,220); }
+  { const k=prog(t,31.3,32.5); const m=$('mark6'); m.style.opacity=k; m.style.transform=`scale(${lerp(.7,1,k)})`;
+    text($('t6'),t,32.0,30); text($('cta6'),t,33.0,24); }
+};
+window.DURATION=36;
+window.ready=document.fonts.ready.then(()=>Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))).then(()=>{render(0);return true});
+</script></body></html>

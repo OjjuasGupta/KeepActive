@@ -50,6 +50,7 @@ function Copy-StoreFiles {
         'lib\random.js',
         'lib\logger.js',
         'lib\storage.js',
+        'lib\rating.js',
         'popup\popup.html',
         'popup\popup.css',
         'popup\popup.js',
@@ -125,6 +126,7 @@ function Assert-NoRemoteAssets {
             $url = $match.Value.TrimEnd('.', ',', ';', ')')
             $allowed = $url -like 'https://teams.microsoft.com/*' -or
                 $url -like 'https://teams.cloud.microsoft/*' -or
+                $url -like 'https://chromewebstore.google.com/detail/*' -or  # rating link opened in a tab, never fetched
                 ($Variant -eq 'full' -and $url -like 'https://www.python.org/*')
             if (-not $allowed) {
                 throw "Unexpected remote URL in $($file.FullName): $url"
@@ -226,6 +228,12 @@ Assert-NoRemoteAssets -StageRoot $fullStage -Variant full
 
 New-Package -Variant 'store' -Version $version -StageRoot $storeStage
 New-Package -Variant 'full' -Version $version -StageRoot $fullStage
+
+# GitHub Pages serves docs/; keep the public policy identical to the packaged one.
+$docsRoot = Join-Path $Root 'docs'
+if (-not (Test-Path $docsRoot)) { New-Item -ItemType Directory -Path $docsRoot -Force | Out-Null }
+Copy-Item (Join-Path $Root 'privacy.html') (Join-Path $docsRoot 'privacy.html') -Force
+Write-Step 'Synced docs/privacy.html for GitHub Pages.'
 
 Write-Step 'Validating JavaScript syntax with node --check...'
 $node = Get-Command node -ErrorAction SilentlyContinue

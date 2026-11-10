@@ -81,6 +81,25 @@ check('normalize keeps site opt-outs and drops unknown hosts',
   custom.webActivity.sites['teams.microsoft.com'] === true &&
   !('evil.example' in custom.webActivity.sites));
 
+require(path.join(__dirname, '..', 'lib', 'rating.js'));
+const R = global.SARating;
+const T0 = Date.UTC(2026, 10, 1);
+const WEEK = R.MIN_AGE_MS;
+const used = R.MIN_ACTIVE_MS;
+const rec = R.normalize(undefined, T0);
+check('rating: fresh record starts now and is not done', rec.firstSeenAt === T0 && !rec.done && rec.snoozes === 0);
+check('rating: not asked in the first week', !R.shouldAsk(rec, T0 + WEEK - 1, 'normal', used));
+check('rating: asked after a week of real use', R.shouldAsk(rec, T0 + WEEK, 'normal', used));
+check('rating: not asked without enough active time', !R.shouldAsk(rec, T0 + WEEK, 'normal', used - 1));
+check('rating: never asked for unpacked/sideload/admin installs',
+  ['development', 'sideload', 'admin', 'other', undefined].every(t => !R.shouldAsk(rec, T0 + WEEK, t, used)));
+const snoozed = R.later(rec, T0 + WEEK);
+check('rating: Later snoozes for 30 days', !R.shouldAsk(snoozed, T0 + WEEK + R.SNOOZE_MS - 1, 'normal', used) &&
+  R.shouldAsk(snoozed, T0 + WEEK + R.SNOOZE_MS, 'normal', used));
+check('rating: second Later stops asking', R.later(snoozed, T0 + 2 * WEEK).done === true);
+check('rating: Rate/No thanks stop asking', !R.shouldAsk(R.finish(rec), T0 + 10 * WEEK, 'normal', used));
+check('rating: review URL uses extension id', R.reviewUrl('abc') === 'https://chromewebstore.google.com/detail/abc/reviews');
+
 console.log('');
 if (failures) {
   console.error(`${failures} test(s) failed.`);

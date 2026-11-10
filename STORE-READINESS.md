@@ -2,7 +2,7 @@
 
 Last verified: 10 November 2026  
 Test browsers: Chrome 157.0.8103.50 on Windows (original pass); Chrome for Testing 157.0.8103.38 headless on Linux (PRD-completion pass)  
-Status: **Code, UI, packaging, and store assets are ready.** Three external actions remain: host the privacy policy at a public HTTPS URL, complete the listing in the Chrome Web Store developer console, and submit from your developer account. Nothing has been submitted.
+Status: **Code, UI, packaging, store assets and policy pages are ready.** Remaining: publish `docs/` on GitHub Pages (the repository is private; see section 7), complete the listing in the Chrome Web Store developer console, and submit. Nothing has been submitted. See section 11 for the final checklist.
 
 ### PRD completion pass (10 November 2026)
 
@@ -28,13 +28,13 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 83.6 KB | `8DBCFFF39AA0EFDB452940B9F31F65C7460F7A8C15223DF81E0BA0FFC9427BAB` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 100.5 KB | `27937224B8B5EE60153384976B4D42BFC70D2E0FD641B2171CAF27FED0A411AD` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 85.8 KB | `ABDE44395A015F05759CBD41577DB1BFD92AD292CFA316DACAB0945FFFACE60C` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 102.8 KB | `B49A646102C07E98F1009BEC4E8EF89C02E1B716A64A3346BD41FC3F1B443E41` |
 
 Unpacked staging folders:
 
-- `dist/keepactive-store-1.1.0/` — 31 files
-- `dist/keepactive-full-1.1.0/` — 37 files
+- `dist/keepactive-store-1.1.0/` — 32 files
+- `dist/keepactive-full-1.1.0/` — 38 files
 
 The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`, icon generators, or non-PNG icon assets. The full ZIP declares `nativeMessaging` and includes the optional desktop helper; it is for local/developer installation only.
 
@@ -46,7 +46,7 @@ The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`
 
 | Check | Result |
 |---|---|
-| `node tools/test-storage.js` | **18/18 pass** — schedule math, overnight shifts, normalization, effective-state logic, Teams Web options |
+| `node tools/test-storage.js` | **27/27 pass**: schedule math, overnight shifts, normalization, effective-state logic, Teams Web options, rating-prompt rules |
 | `py -3 tools/test-native.py` | **8/8 pass** — native framing, `READY`, `PING`, `CONFIG`, unknown command, `STOP`, clean exit |
 | `powershell -File tools/build.ps1` | Pass — MV3 manifests, version match, icon references, content-script paths, no remote URLs, ZIP layout, `node --check` on 8 JS files |
 | Store CDP smoke test | **25/25 pass**, repeated 3 times for stability |
@@ -73,22 +73,24 @@ The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`
 
 ## 3. Chrome Web Store listing copy
 
-### Name
+The store takes the item title and summary from `manifest.json`. The title adds a short, descriptive phrase people search for ("keep screen awake", "stay active") without keyword stuffing. Microsoft's trademark stays out of the title and appears only where the description needs it to explain what the extension works with.
+
+### Name (43 characters; limit 75)
 
 ```text
-KeepActive
+KeepActive: Keep Screen Awake & Stay Active
 ```
 
-### Summary (113 characters; limit 132)
+### Summary (120 characters; limit 132)
 
 ```text
-Keeps your display awake and sends small activity events to Microsoft Teams on the web. Local-only, no telemetry.
+Keep your screen awake and send gentle activity to Microsoft Teams on the web. Work schedules, Smart Pause, no tracking.
 ```
 
 ### Category
 
 ```text
-Productivity
+Productivity → Tools (choose "Workflow & Planning" if "Tools" is not offered)
 ```
 
 ### Language
@@ -100,32 +102,41 @@ English (United States)
 ### Detailed description
 
 ```text
-KeepActive is a local-only Chrome extension for long passive sessions: presentations, dashboards, monitoring screens, downloads, and data rendering.
+Stop your screen from sleeping in the middle of a presentation, a dashboard or a long download. KeepActive keeps your display awake while Chrome is running and sends gentle, human-paced activity to Microsoft Teams on the web, only on the schedule you choose. The moment you touch your keyboard or mouse, it steps aside.
+
+WHY PEOPLE USE IT
+
+• Presentations, dashboards and monitoring screens that must stay on.
+• Long downloads, renders, uploads and reading sessions.
+• Keeping a Teams web tab from going idle during long passive work sessions.
 
 WHAT IT DOES
 
-• Display keep-awake — asks Chrome to keep the display on while KeepActive is active and Chrome is running.
-• Teams Web activity — sends small, randomized pointer-move, Shift-key, and focus events, plus an occasional click on the empty page background, to top-level Microsoft Teams Web tabs. It never clicks buttons, links, or inputs, never types text, never reads messages, and never changes Teams content. Background clicks and each Teams site can be turned off.
-• Automated shifts — engages only during the workdays and hours you choose, including overnight schedules.
-• Smart Pause — uses the operating system idle signal to pause while you are actively using the computer, then resume after your chosen idle delay.
-• Manual pause/resume, an Alt+Shift+S hotkey, a session safety limit, and local diagnostics.
+• Keep screen awake: asks Chrome to keep the display on while KeepActive is active and Chrome is running.
+• Teams on the web activity: small, randomized pointer moves, Shift taps and focus pings every 60–150 seconds by default, plus an optional click on the empty page background. It never clicks buttons, links or inputs, never types text, never reads messages and never changes Teams content. Background clicks and each Teams site can be turned off.
+• Work schedules: runs only on the days and hours you choose, including overnight shifts.
+• Smart Pause: uses your computer's idle signal to pause while you are working, then resumes after your chosen idle delay.
+• One-click toolbar control, an Alt+Shift+S shortcut, a session safety limit and local diagnostics.
 
-WHAT IT DOES NOT DO
+HOW TO USE
 
-• No telemetry, analytics, advertising, accounts, tracking cookies, remote fonts, or third-party requests.
-• No native app, installer, or desktop control in this package.
-• Does not guarantee a Microsoft Teams presence state. Microsoft controls presence.
-• Does not bypass screen lock, Intune, Group Policy, MDM, EDR, or any other corporate control.
+1. Pin KeepActive to the toolbar and switch it on.
+2. Keep a Microsoft Teams web tab open (a normal tab works best).
+3. Optional: set a work schedule and Smart Pause delay in the Control Deck.
 
-REQUIREMENTS
+PRIVACY FIRST
 
-• Chrome 116 or newer.
-• Chrome must be running for display keep-awake.
-• Keep a Microsoft Teams Web tab open for Teams Web activity. Chrome may throttle timers in background tabs, so a normal open tab is recommended.
+• No accounts, analytics, ads, tracking or third-party requests.
+• Settings and diagnostics stay in your browser profile (chrome.storage.local).
+• No native app or installer in this package.
 
-PRIVACY
+GOOD TO KNOW
 
-Preferences and diagnostics stay in chrome.storage.local inside your browser profile. See the privacy policy for details.
+• KeepActive does not guarantee a Microsoft Teams presence status. Microsoft controls presence.
+• It does not bypass screen lock, Intune, Group Policy, MDM, EDR or other company controls.
+• Requires Chrome 116 or newer. Chrome must be running for keep-awake.
+
+Microsoft and Microsoft Teams are trademarks of Microsoft Corporation. KeepActive is not affiliated with or endorsed by Microsoft.
 ```
 
 ### Single-purpose statement
@@ -133,6 +144,16 @@ Preferences and diagnostics stay in chrome.storage.local inside your browser pro
 ```text
 KeepActive keeps the display awake and generates small, periodic activity events in Microsoft Teams Web tabs according to a user-configured schedule and pause rules.
 ```
+
+### Video and promo images
+
+- **YouTube video:** upload `store-assets/keepactive-promo-1080p.mp4` to YouTube (Public or Unlisted), then paste its URL in the listing's **Global promo video** field.
+- **Small promo tile (440×280):** `store-assets/keepactive-promo-440x280.png`.
+- **Marquee promo tile (1400×560):** `store-assets/keepactive-marquee-1400x560.png`. It's used only if Chrome editors feature the item, but it's required to be considered.
+
+### Rating prompt
+
+Starting with this release, the popup asks once for a rating. It appears only for store installs, at least 7 days after the popup was first opened and after 2 hours of active use. **Rate it** opens the listing's review page. **Later** snoozes for 30 days, a second **Later** stops it, and **No thanks** stops it immediately. It offers no rewards, which store policy forbids, and sends nothing anywhere. The logic is in `lib/rating.js`, and the tests are in `tools/test-storage.js`.
 
 ---
 
@@ -175,7 +196,7 @@ Recommended answers:
 | Is data sold or shared with third parties? | No |
 | Is data used for creditworthiness or lending? | No |
 | Does the extension use remote code? | No |
-| Is there a privacy policy URL? | Yes — the public URL you host in section 7 |
+| Is there a privacy policy URL? | Yes — `https://ojjuasgupta.github.io/StayActive/privacy.html` once published (section 7) |
 
 The extension does not transmit any data off the device.
 
@@ -195,7 +216,9 @@ Optional small promo tile (440×280, exact):
 
 - `store-assets/keepactive-promo-440x280.png`
 
-The four store images were updated in place to the new Crimson & Cream logo (only the logo pixels changed; `store-assets/patch-logo.html` did the replacement) and saved as 24-bit PNG without alpha. Screenshot 3 still shows the pre-1.1 Teams Web wording ("It never clicks or types text"); recapture the setup guide on Windows before submission, or omit that screenshot.
+The screenshots and promo tile were recaptured on 10 November 2026 from a fresh unpacked install of `dist/keepactive-store-1.1.0.zip` with `tools/capture-store-assets.mjs` (headless Chrome, en-GB locale so the 24h time fields render as 08:00/20:00, Roboto). They show the current Presence logo and the current setup-guide wording (optional click on the empty page background; never buttons, links or inputs). All are 24-bit PNG without alpha, square corners, full bleed.
+
+The 128×128 icons use 96×96 artwork with 16 px transparent padding, per Chrome Web Store image guidance; only the soft shadow extends 1 px into the top padding.
 
 The screenshots contain no native-helper UI, so they match the browser-only store package.
 
@@ -203,17 +226,23 @@ The screenshots contain no native-helper UI, so they match the browser-only stor
 
 ## 7. Privacy policy hosting
 
-The Chrome Web Store requires a public HTTPS privacy-policy URL. The bundled `privacy.html` is self-contained (no images, scripts, or external assets), so it can be hosted as a single file.
+The Chrome Web Store requires a public HTTPS privacy-policy URL. `tools/build.ps1` copies `privacy.html` to `docs/privacy.html` on every build, so the hosted policy always matches the packaged one. `docs/index.html` is the landing/support page (static HTML/CSS plus a self-hosted Three.js bundle built from `site/` with `npm run build`; no external requests); `docs/.nojekyll` disables Jekyll processing.
 
-Example with GitHub Pages:
+Planned URLs (GitHub Pages lowercases the account name):
 
-1. Copy `privacy.html` into a public repository, for example `keepactive/privacy.html`.
-2. Enable **Settings → Pages** for the repository.
-3. Confirm the page loads in a private window without signing in, for example:
-   `https://<your-account>.github.io/keepactive/privacy.html`
-4. Paste that HTTPS URL into the listing’s **Privacy policy URL** field.
+- Privacy policy: `https://ojjuasgupta.github.io/StayActive/privacy.html`
+- Homepage / support: `https://ojjuasgupta.github.io/StayActive/`
+- Contact: `filmfrenzy777@gmail.com` (named in the policy's Contact section)
 
-Do not use a `chrome-extension://` URL; reviewers cannot open it.
+To publish:
+
+1. Merge this branch into `main` (Pages serves from a branch on GitHub).
+2. **The repository is currently private.** GitHub Free only publishes Pages from public repositories; private-repo Pages require GitHub Pro, Team or Enterprise, and the published site is still public. Either make the repository public, upgrade, or move `docs/` into a separate public repository.
+3. Open **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/docs`, and save.
+4. After the deploy finishes, open the privacy URL in a private window without signing in.
+5. Paste it into the listing's **Privacy policy URL** field, and the homepage into **Homepage URL** / **Support URL**.
+
+Do not use a `chrome-extension://` URL; reviewers cannot open it. `homepage_url` is intentionally not set in `manifest.json`, so the package doesn't ship a link before the site exists; the listing fields above cover it.
 
 ---
 
@@ -274,16 +303,38 @@ The helper requires Python 3.8+. On macOS it also requires Accessibility permiss
 
 ---
 
-## 11. Remaining external actions
+## 11. Final pre-publication checklist
 
-- [ ] Host `privacy.html` at a public HTTPS URL and paste it into the listing.
-- [ ] Optional: add a support URL (repository, contact page, or support email) and homepage.
-- [ ] Optional: run the manual Teams presence protocol in section 8 with two accounts.
-- [ ] Sign in to the Chrome Web Store developer console with the publishing account.
-- [ ] Create the listing: name, summary, detailed description, category, language, screenshots, promo tile, privacy URL.
-- [ ] Complete the privacy practices questionnaire using section 5.
-- [ ] Upload **`dist/keepactive-store-1.1.0.zip`** only.
-- [ ] Submit for review.
+Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/extension_release_checklist/), [chrome-extension-publish-checklist](https://github.com/stylejinmu/chrome-extension-publish-checklist), and Chrome Web Store image guidance.
+
+### Done (verified 10 November 2026)
+
+- [x] Manifest V3, version 1.1.0, minimal permissions (`power`, `idle`, `alarms`, `storage`), host access limited to the two Teams origins; no `nativeMessaging` in the store build.
+- [x] Permission justifications and single-purpose statement written (sections 3–4).
+- [x] No shipped `console.*`, `debugger`, `eval`/remote code, remote assets or hardcoded secrets; page CSP `script-src 'self'`.
+- [x] Production build (`tools/build.ps1`) passes all manifest/ZIP/syntax assertions.
+- [x] Automated tests: storage/schedule/rating 27/27, native helper protocol, store smoke 25/25, Teams Web stub e2e (all pass), run against a fresh unzip of the store ZIP.
+- [x] Fresh unpacked install of the store ZIP loads with no page errors.
+- [x] 128 px icons padded to Chrome guidance; screenshots 1280×800 and promo 440×280 recaptured from the packaged build.
+- [x] Privacy policy names the contact email; `docs/` prepared for GitHub Pages.
+- [x] `CHANGELOG.md` added.
+- [x] Storybook checks: not applicable (no Storybook in this project).
+
+### Pending you (outside this repository)
+
+- [ ] Merge PR #1 into `main`.
+- [ ] Make Pages publishable (repo is private, see section 7) and enable **Settings → Pages → main /docs**.
+- [ ] Confirm `https://ojjuasgupta.github.io/StayActive/privacy.html` loads signed out.
+- [ ] Recommended: run the manual Teams presence protocol in section 8 with two accounts. Automated tests use a stubbed Teams page and can't confirm Microsoft's real presence behavior.
+- [ ] Recommended: one manual pass on Windows/macOS Chrome (popup, toolbar icon states, Alt+Shift+S).
+
+### Pending developer console
+
+- [ ] Developer account registered (one-time fee paid), 2-Step Verification on, contact email `filmfrenzy777@gmail.com` verified.
+- [ ] Create the listing with section 3 copy, category, language, the three screenshots and promo tile.
+- [ ] Privacy URL, homepage and support URL from section 7.
+- [ ] Permission justifications (section 4) and privacy practices questionnaire (section 5); certify data-use disclosures.
+- [ ] Upload **`dist/keepactive-store-1.1.0.zip`** only (SHA256 in section 1) and submit for review.
 - [ ] After approval, install from the live listing and repeat the store smoke checks.
 
 No Chrome Web Store submission has been made.

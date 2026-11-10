@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>KeepActive: Keep Screen Awake &amp; Stay Active | Chrome extension</title>
+  <meta name="description" content="KeepActive is a local-only Chrome extension that keeps your display awake and sends small, human-paced activity to Microsoft Teams on the web, on the schedule you choose. No telemetry.">
+  <meta name="theme-color" content="#F4ECE0">
+  <!-- Set to the Chrome Web Store listing URL once it is live; empty shows "Coming soon". -->
+  <meta name="keepactive:store-url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KeepActive: Keep Screen Awake &amp; Stay Active">
+  <meta property="og:description" content="Keeps your display awake and gives Teams on the web a small, human-paced sign of life. Local-only, no telemetry.">
+  <meta property="og:image" content="https://ojjuasgupta.github.io/StayActive/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="KeepActive home">
+      <img src="assets/mark.svg" alt="" width="30" height="30">
+      <span>KeepActive</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#states">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-small" data-store>Add to Chrome</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" data-scene="0.43 0.02 1 0 0" data-scene-m="0 0.42 0.92 0 0">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pip" aria-hidden="true"></span>Chrome extension · Local-only</p>
+        <h1>Stay present,<br><em>quietly.</em></h1>
+        <p class="lede">KeepActive keeps your display awake and gives Microsoft Teams on the web a small, human-paced sign of life, on the schedule you choose. The moment you’re back at the keyboard, it steps aside.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" data-store>Add to Chrome</a>
+          <a class="btn btn-ghost" href="#states">See how it works</a>
+        </div>
+        <ul class="meta" aria-label="Highlights">
+          <li>No telemetry</li>
+          <li>No account</li>
+          <li>Four permissions</li>
+        </ul>
+      </div>
+      <div class="hero-fallback" aria-hidden="true"><img src="assets/mark.svg" alt=""></div>
+      <a class="scroll-cue" href="#states" aria-label="Scroll to how it works"><span></span></a>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Display keep-awake</span><b>✦</b><span>Teams Web activity</span><b>✦</b><span>Work shifts</span><b>✦</b><span>Smart Pause</span><b>✦</b><span>Zero telemetry</span><b>✦</b>
+        <span>Display keep-awake</span><b>✦</b><span>Teams Web activity</span><b>✦</b><span>Work shifts</span><b>✦</b><span>Smart Pause</span><b>✦</b><span>Zero telemetry</span><b>✦</b>
+      </div>
+    </div>
+
+    <section class="states" id="states" aria-labelledby="states-title">
+      <header class="section-head reveal">
+        <p class="kicker">01 · The mark is the status</p>
+        <h2 id="states-title">One glance tells you <em>where things stand.</em></h2>
+      </header>
+
+      <article class="step" data-scene="0.45 0 0.9 0 0" data-scene-m="0 0.45 0.62 0 0">
+        <div class="step-card reveal">
+          <p class="step-tag"><span class="glyph glyph-dot" aria-hidden="true"></span>Active</p>
+          <h3>A solid dot. You’re covered.</h3>
+          <p>The display stays awake. In your open Teams tab, KeepActive sends a small pointer move, a Shift tap or a focus ping at random intervals, every 60 to 150 seconds by default.</p>
+        </div>
+      </article>
+
+      <article class="step" data-scene="0.45 0 0.9 0 1" data-scene-m="0 0.45 0.62 0 1">
+        <div class="step-card reveal">
+          <p class="step-tag"><span class="glyph glyph-ring" aria-hidden="true"></span>Paused</p>
+          <h3>A hollow ring. You’re back.</h3>
+          <p>Smart Pause watches your computer’s idle signal. Touch the keyboard or mouse and activity stops at once. It resumes only after the idle delay you pick.</p>
+        </div>
+      </article>
+
+      <article class="step" data-scene="0.45 0 0.9 0 2" data-scene-m="0 0.45 0.62 0 2">
+        <div class="step-card reveal">
+          <p class="step-tag"><span class="glyph glyph-none" aria-hidden="true"></span>Off</p>
+          <h3>No badge. Nothing running.</h3>
+          <p>Outside your shift, after the session safety limit, or when you switch it off with <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>: no events and no keep-awake.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="features" id="features" aria-labelledby="features-title" data-scene="0.1 1.7 0.6 0.5 0" data-scene-m="0 1.7 0.5 0.5 0">
+      <header class="section-head reveal">
+        <p class="kicker">02 · What’s inside</p>
+        <h2 id="features-title">Small, careful, and <em>entirely yours.</em></h2>
+      </header>
+
+      <div class="bento">
+        <article class="card card-wide reveal" data-tilt>
+          <div class="card-art art-screen" aria-hidden="true"><span class="screen"><span class="screen-glow"></span></span></div>
+          <div class="card-body">
+            <h3>Display keep-awake</h3>
+            <p>Asks Chrome to keep the screen on while KeepActive is active. There are no drivers or installers, and it never overrides your company’s lock policy.</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-tilt>
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 200 110" class="art-path"><path d="M14 86 C 46 20, 82 96, 112 52 S 168 18, 186 34"/><circle class="cursor-dot" r="6"/></svg>
+          </div>
+          <h3>Teams Web activity</h3>
+          <p>Randomized pointer moves, Shift taps and focus pings in top-level Teams tabs. The occasional click lands only on the empty page background, never on a button, link or message box.</p>
+        </article>
+
+        <article class="card reveal" data-tilt>
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" class="art-dial">
+              <circle cx="60" cy="60" r="44" class="dial-track"/>
+              <circle cx="60" cy="60" r="44" class="dial-arc" pathLength="24"/>
+              <circle cx="60" cy="60" r="4" class="dial-hub"/>
+            </svg>
+          </div>
+          <h3>Work shifts</h3>
+          <p>Choose workdays and hours, overnight shifts included. Outside them, KeepActive rests.</p>
+        </article>
+
+        <article class="card reveal" data-tilt>
+          <div class="card-art" aria-hidden="true"><span class="art-pause"><span></span></span></div>
+          <h3>Smart Pause</h3>
+          <p>Real keyboard, mouse, wheel or touch input in Teams pauses activity instantly. No guessing.</p>
+        </article>
+
+        <article class="card card-wide card-list reveal" data-tilt>
+          <h3>And the quiet details</h3>
+          <ul>
+            <li><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> to switch on or off</li>
+            <li>Session safety limit</li>
+            <li>Per-site switches for <code>teams.microsoft.com</code> and <code>teams.cloud.microsoft</code></li>
+            <li>Local diagnostics you can read</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="look" id="look" aria-labelledby="look-title" data-scene="0.1 1.7 0.6 0.5 0" data-scene-m="0 1.7 0.5 0.5 0">
+      <header class="section-head reveal">
+        <p class="kicker">03 · The interface</p>
+        <h2 id="look-title">Two screens. <em>Everything in reach.</em></h2>
+      </header>
+      <div class="shots">
+        <figure class="shot shot-deck">
+          <img src="assets/control-deck.webp" width="1280" height="800" loading="lazy" alt="KeepActive Control Deck showing Teams Web intervals, work shifts and Smart Pause settings">
+        </figure>
+        <figure class="shot shot-popup">
+          <img src="assets/popup.webp" width="700" height="1012" loading="lazy" alt="KeepActive popup showing active status, display keep-awake, Teams Web activity and the pause button">
+        </figure>
+      </div>
+      <p class="caption reveal">The popup for status and quick control. The Control Deck for intervals, shifts and Smart Pause.</p>
+    </section>
+
+    <section class="privacy" id="privacy" aria-labelledby="privacy-title" data-scene="-0.45 0 0.9 2 0" data-scene-m="0 0.5 0.55 2 0">
+      <div class="privacy-copy">
+        <p class="kicker reveal">04 · Privacy</p>
+        <h2 id="privacy-title" class="reveal">Nothing leaves <em>your browser.</em></h2>
+        <p class="reveal">Your settings and a short diagnostics log stay in <code>chrome.storage.local</code>, inside your Chrome profile. KeepActive has no server, analytics, account or remote code, and this site loads nothing from third parties.</p>
+        <dl class="perms reveal">
+          <div><dt>power</dt><dd>Keep the display awake.</dd></div>
+          <div><dt>idle</dt><dd>Notice you’re back, so Smart Pause can step aside.</dd></div>
+          <div><dt>alarms</dt><dd>Wake up for shift changes without a busy loop.</dd></div>
+          <div><dt>storage</dt><dd>Remember your settings on this device.</dd></div>
+          <div><dt>Teams only</dt><dd>Site access is limited to <code>teams.microsoft.com</code> and <code>teams.cloud.microsoft</code>. It never reads messages.</dd></div>
+        </dl>
+        <a class="link-arrow reveal" href="privacy.html">Read the privacy policy</a>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title" data-scene="-0.45 -1.7 0.7 2.5 0" data-scene-m="0 -1.7 0.5 2.5 0">
+      <header class="section-head reveal">
+        <p class="kicker">05 · Straight answers</p>
+        <h2 id="faq-title">The honest <em>fine print.</em></h2>
+      </header>
+      <div class="faq-list">
+        <details class="reveal">
+          <summary>Will Teams always show me as Available?</summary>
+          <p>No. Microsoft controls presence and can change how it works. KeepActive sends small activity events. It can’t guarantee a status.</p>
+        </details>
+        <details class="reveal">
+          <summary>Does it read my messages or type anything?</summary>
+          <p>No. It never reads Teams content, never types text, and never clicks buttons, links or inputs.</p>
+        </details>
+        <details class="reveal">
+          <summary>Does it get around my company’s security settings?</summary>
+          <p>No. Screen-lock policy, device management, endpoint security and Group Policy still apply. KeepActive doesn’t touch them.</p>
+        </details>
+        <details class="reveal">
+          <summary>Is it allowed at work?</summary>
+          <p>That depends on your organization. Check your acceptable-use policy and Microsoft’s terms before using automated activity.</p>
+        </details>
+        <details class="reveal">
+          <summary>Does it work with the Teams desktop app?</summary>
+          <p>No. It works with Teams on the web, in a Chrome tab you keep open. Chrome may slow timers in background tabs, so a normal open tab works best.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="finale" id="get" aria-labelledby="get-title" data-scene="0 0.36 0.62 3 0" data-scene-m="0 0.4 0.62 3 0">
+      <div class="finale-copy reveal">
+        <h2 id="get-title">Long presentation? Big render?<br><em>Keep the lights on.</em></h2>
+        <p>Built for long, passive sessions: presentations, dashboards, renders and downloads. Chrome 116 or newer.</p>
+        <div class="cta-row cta-center">
+          <a class="btn btn-primary" data-store>Add to Chrome</a>
+          <a class="btn btn-ghost" href="privacy.html">Privacy policy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="assets/mark.svg" alt="" width="26" height="26">
+      <span>KeepActive</span>
+    </div>
+    <nav aria-label="Footer">
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:filmfrenzy777@gmail.com">filmfrenzy777@gmail.com</a>
+    </nav>
+    <p class="fine">Not affiliated with or endorsed by Microsoft. Microsoft Teams is a trademark of Microsoft Corporation. © 2026 KeepActive.</p>
+  </footer>
+</body>
+</html>

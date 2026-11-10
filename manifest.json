@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "KeepActive",
+  "name": "KeepActive: Keep Screen Awake & Stay Active",
   "version": "1.1.0",
-  "description": "Keeps your display awake and sends small activity events to Microsoft Teams on the web. Local-only, no telemetry.",
+  "description": "Keep your screen awake and send gentle activity to Microsoft Teams on the web. Work schedules, Smart Pause, no tracking.",
   "minimum_chrome_version": "116",
 
   "permissions": [

@@ -105,7 +105,7 @@
     return canvas.toDataURL('image/png');
   }
 
-  async function renderIcon(state, size) {
+  async function renderIcon(state, size, options = {}) {
     // Render 4x then downsample for cleaner small sizes.
     const big = await renderSvg(buildSvg(state, size), size * 4);
     const img = new Image();
@@ -115,7 +115,16 @@
     canvas.height = size;
     const ctx = canvas.getContext('2d');
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, 0, 0, size, size);
+    if (options.storePadding) {
+      // Chrome Web Store: 96x96 artwork + 16 px transparent padding per side
+      // at 128 px. The tile spans 464 of 512 units, so scale it to 96/128.
+      const art = size * 0.75;
+      const drawn = art * 512 / 464;
+      const offset = (size - drawn) / 2;
+      ctx.drawImage(img, offset, offset, drawn, drawn);
+    } else {
+      ctx.drawImage(img, 0, 0, size, size);
+    }
     return canvas.toDataURL('image/png');
   }
 </script>

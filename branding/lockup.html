@@ -23,7 +23,7 @@
     line-height: .88;
     font-weight: 600;
     letter-spacing: -0.052em;
-    color: #08251E;
+    color: #2A2220;
     white-space: nowrap;
   }
   .tag {
@@ -34,24 +34,24 @@
     font-weight: 600;
     letter-spacing: .235em;
     text-transform: uppercase;
-    color: #2F6B58;
+    color: #8A1626;
   }
   .rule {
     margin-top: 26px;
     margin-left: 6px;
     width: 72px;
     height: 2px;
-    background: #3EE0A1;
+    background: #A11D2C;
   }
   body.dark .word { color: #F4F0E5; }
-  body.dark .tag { color: #8FD9C0; }
-  body.dark .rule { background: #3EE0A1; }
+  body.dark .tag { color: #F0DCC8; }
+  body.dark .rule { background: #A11D2C; }
   body.cream { background: #F5F1E8; }
-  body.forest { background: #061A15; }
+  body.crimson { background: #8A1626; }
 </style>
 </head>
 <body>
-  <div class="mark"><img src="keepactive-mark.svg" alt="KeepActive K monogram"></div>
+  <div class="mark"><img src="keepactive-mark.svg" alt="KeepActive Presence mark"></div>
   <div class="type">
     <div class="word">KeepActive</div>
     <div class="tag">Quietly active</div>
@@ -60,11 +60,11 @@
   <script>
     const params = new URLSearchParams(location.search);
     const bg = params.get('bg');
-    if (params.get('theme') === 'dark' || bg === 'forest') {
+    if (params.get('theme') === 'dark' || bg === 'crimson') {
       document.body.classList.add('dark');
     }
     if (bg === 'cream') document.body.classList.add('cream');
-    if (bg === 'forest') document.body.classList.add('forest');
+    if (bg === 'crimson') document.body.classList.add('crimson');
   </script>
 </body>
 </html>

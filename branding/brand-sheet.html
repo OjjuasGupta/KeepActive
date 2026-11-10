@@ -9,52 +9,52 @@
   body {
     font-family: "Inter", "Segoe UI Variable Display", "Segoe UI", sans-serif;
     background: #F3EFE5;
-    color: #08251E;
+    color: #2A2220;
     position: relative;
   }
   .grain {
     position: absolute; inset: 0;
     background:
-      radial-gradient(900px 700px at 12% 2%, rgba(62,224,161,.10), rgba(62,224,161,0) 62%),
-      radial-gradient(800px 800px at 96% 100%, rgba(4,120,87,.08), rgba(4,120,87,0) 70%);
+      radial-gradient(900px 700px at 12% 2%, rgba(161,29,44,.10), rgba(161,29,44,0) 62%),
+      radial-gradient(800px 800px at 96% 100%, rgba(161,29,44,.08), rgba(161,29,44,0) 70%);
     pointer-events: none;
   }
   .header {
     position: absolute; left: 104px; right: 104px; top: 62px;
     display: flex; align-items: center; justify-content: space-between;
     font-size: 17px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-    color: #466052;
+    color: #6E625B;
   }
   .header .left { display: flex; align-items: center; gap: 16px; }
-  .header .dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; }
-  .header .right { font-size: 14px; letter-spacing: .18em; color: #7C8A83; }
+  .header .dot { width: 8px; height: 8px; border-radius: 50%; background: #A11D2C; }
+  .header .right { font-size: 14px; letter-spacing: .18em; color: #8E847A; }
 
   .panel {
     position: absolute; left: 104px; top: 152px;
     width: 1040px; height: 1250px;
     border-radius: 38px;
     background:
-      radial-gradient(720px 620px at 64% 32%, rgba(52,211,153,.20), rgba(52,211,153,0) 66%),
-      linear-gradient(148deg, #103F33 0%, #07271F 48%, #03130F 100%);
-    box-shadow: 0 44px 90px rgba(13, 40, 32, .20), 0 12px 30px rgba(13, 40, 32, .10);
+      radial-gradient(720px 620px at 64% 32%, rgba(246,237,223,.20), rgba(246,237,223,0) 66%),
+      linear-gradient(148deg, #A9223A 0%, #8A1626 52%, #5E0E1A 100%);
+    box-shadow: 0 44px 90px rgba(42, 34, 32, .20), 0 12px 30px rgba(42, 34, 32, .10);
     overflow: hidden;
   }
   .panel::after {
     content: "";
     position: absolute; inset: 0;
     border-radius: 38px;
-    box-shadow: inset 0 0 0 1px rgba(167,243,208,.14);
+    box-shadow: inset 0 0 0 1px rgba(246,237,223,.14);
     pointer-events: none;
   }
   .panel .label {
     position: absolute; top: 48px; left: 52px;
     font-size: 13px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
-    color: rgba(209,250,229,.54);
+    color: rgba(246,237,223,.54);
   }
   .panel .index {
     position: absolute; top: 48px; right: 52px;
     font-size: 13px; font-weight: 600; letter-spacing: .18em;
-    color: rgba(209,250,229,.36);
+    color: rgba(246,237,223,.36);
   }
   .mark {
     position: absolute; left: 50%; top: 382px; transform: translate(-50%, -50%);
@@ -72,13 +72,13 @@
     position: absolute; left: 0; right: 0; top: 808px;
     text-align: center;
     font-size: 15px; font-weight: 600; letter-spacing: .30em; text-transform: uppercase;
-    color: #8FD9C0;
+    color: #F0DCC8;
   }
   .panel .caption {
     position: absolute; left: 0; right: 0; top: 878px;
     text-align: center;
     font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-    color: rgba(209,250,229,.34);
+    color: rgba(246,237,223,.34);
   }
   .states {
     position: absolute; left: 76px; right: 76px; bottom: 72px;
@@ -87,28 +87,28 @@
   .state {
     border-radius: 18px;
     background: rgba(244,240,229,.055);
-    box-shadow: inset 0 0 0 1px rgba(209,250,229,.10);
+    box-shadow: inset 0 0 0 1px rgba(246,237,223,.10);
     padding: 22px 14px 18px;
     text-align: center;
   }
   .state img { width: 62px; height: 62px; display: block; margin: 0 auto 13px; }
-  .state b { display: block; font-size: 14px; font-weight: 600; color: #E8F4EE; letter-spacing: .01em; }
-  .state small { display: block; margin-top: 4px; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: rgba(209,250,229,.44); }
+  .state b { display: block; font-size: 14px; font-weight: 600; color: #F6EDDF; letter-spacing: .01em; }
+  .state small { display: block; margin-top: 4px; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: rgba(246,237,223,.44); }
 
   .copy { position: absolute; left: 1236px; top: 312px; width: 1060px; }
   .eyebrow {
     display: inline-flex; align-items: center; gap: 11px;
     font-size: 14px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
-    color: #2F7A62;
+    color: #8A1626;
   }
-  .eyebrow .dash { width: 36px; height: 2px; background: #10B981; }
+  .eyebrow .dash { width: 36px; height: 2px; background: #A11D2C; }
   h1 {
     margin-top: 30px;
     font-size: 176px;
     line-height: .86;
     font-weight: 600;
     letter-spacing: -0.058em;
-    color: #08251E;
+    color: #2A2220;
   }
   .tagline {
     margin-top: 34px;
@@ -116,7 +116,7 @@
     font-style: italic;
     font-size: 62px;
     line-height: 1.05;
-    color: #2F6B58;
+    color: #8A1626;
     letter-spacing: -0.02em;
   }
   .lede {
@@ -124,14 +124,14 @@
     max-width: 850px;
     font-size: 21px;
     line-height: 1.62;
-    color: #5B655F;
+    color: #5E5550;
   }
 
   .divider { position: absolute; left: 1236px; top: 942px; width: 1060px; height: 1px; background: #D8D2C4; }
 
   .system { position: absolute; left: 1236px; top: 986px; width: 1060px; }
   .system-title {
-    font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #7C8A83;
+    font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #8E847A;
   }
   .sizes { display: flex; align-items: flex-end; gap: 30px; margin-top: 22px; }
   .size { text-align: center; }
@@ -145,8 +145,8 @@
 
   .swatches { position: absolute; left: 1236px; top: 1274px; display: flex; gap: 26px; }
   .swatch { width: 166px; }
-  .swatch .chip { height: 54px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(8,37,30,.08); }
-  .swatch b { display: block; margin-top: 10px; font-size: 12px; font-weight: 600; color: #4E5B54; letter-spacing: .02em; }
+  .swatch .chip { height: 54px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(42,34,32,.08); }
+  .swatch b { display: block; margin-top: 10px; font-size: 12px; font-weight: 600; color: #4E4642; letter-spacing: .02em; }
   .swatch small { display: block; margin-top: 3px; font-family: ui-monospace, Consolas, monospace; font-size: 10px; color: #8A837B; }
 
   .footer {
@@ -168,15 +168,15 @@
 
   <div class="panel">
     <div class="label">Primary mark</div>
-    <div class="index">K / 01</div>
-    <div class="mark"><img src="keepactive-mark.svg" alt="KeepActive K monogram"></div>
+    <div class="index">P / 01</div>
+    <div class="mark"><img src="keepactive-mark.svg" alt="KeepActive Presence mark"></div>
     <div class="word">KeepActive</div>
     <div class="tag">Quietly active</div>
     <div class="caption">One silhouette · three states</div>
     <div class="states">
-      <div class="state"><img src="../icons/icon-green-128.png" alt=""><b>Active</b><small>Forest / Mint</small></div>
-      <div class="state"><img src="../icons/icon-green-dim-128.png" alt=""><b>Paused</b><small>Sage / Dim</small></div>
-      <div class="state"><img src="../icons/icon-red-128.png" alt=""><b>Disabled</b><small>Maroon / Rose</small></div>
+      <div class="state"><img src="../icons/icon-green-128.png" alt=""><b>Active</b><small>Crimson / Dot</small></div>
+      <div class="state"><img src="../icons/icon-green-dim-128.png" alt=""><b>Paused</b><small>Stone / Ring</small></div>
+      <div class="state"><img src="../icons/icon-red-128.png" alt=""><b>Disabled</b><small>Charcoal / No badge</small></div>
     </div>
   </div>
 
@@ -184,7 +184,7 @@
     <div class="eyebrow"><span class="dash"></span>Chrome extension</div>
     <h1>KeepActive</h1>
     <div class="tagline">Quietly active.</div>
-    <p class="lede">A custom geometric monogram for a local-first tool that keeps your display awake and sends gentle activity to Teams Web. Built to read clearly from a 16 px toolbar to the store listing.</p>
+    <p class="lede">A cream disc with a status badge, the universal “available” signal, abstracted for a local-first tool that keeps your display awake and sends gentle activity to Teams Web. Built to read clearly from a 16 px toolbar to the store listing.</p>
   </div>
 
   <div class="divider"></div>
@@ -200,15 +200,15 @@
   </div>
 
   <div class="swatches">
-    <div class="swatch"><div class="chip" style="background:#0C3B2F"></div><b>Forest</b><small>#0C3B2F</small></div>
-    <div class="swatch"><div class="chip" style="background:#3EE0A1"></div><b>Mint</b><small>#3EE0A1</small></div>
+    <div class="swatch"><div class="chip" style="background:#A11D2C"></div><b>Crimson</b><small>#A11D2C</small></div>
+    <div class="swatch"><div class="chip" style="background:#F6EDDF"></div><b>Cream</b><small>#F6EDDF</small></div>
     <div class="swatch"><div class="chip" style="background:#F3EFE5"></div><b>Ivory</b><small>#F3EFE5</small></div>
-    <div class="swatch"><div class="chip" style="background:#8AA99A"></div><b>Sage</b><small>#8AA99A</small></div>
-    <div class="swatch"><div class="chip" style="background:#FB7185"></div><b>Rose</b><small>#FB7185</small></div>
+    <div class="swatch"><div class="chip" style="background:#8E847A"></div><b>Stone</b><small>#8E847A</small></div>
+    <div class="swatch"><div class="chip" style="background:#332C29"></div><b>Charcoal</b><small>#332C29</small></div>
   </div>
 
   <div class="footer">
-    <span>Custom K monogram · Gradient / solid optical variants</span>
+    <span>Crimson &amp; Cream Presence mark · Optical variants for 16 / 32 / 48 / 128 px</span>
     <span class="right">2026</span>
   </div>
 </body>

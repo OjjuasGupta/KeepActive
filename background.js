@@ -566,6 +566,21 @@ importScripts('lib/random.js', 'lib/storage.js', 'lib/logger.js');
       if (n !== null) picked.safety = { maxSessionHours: n };
     }
 
+    if (changes.webActivity && typeof changes.webActivity === 'object') {
+      picked.webActivity = {};
+      if (typeof changes.webActivity.neutralClicks === 'boolean') {
+        picked.webActivity.neutralClicks = changes.webActivity.neutralClicks;
+      }
+      if (changes.webActivity.sites && typeof changes.webActivity.sites === 'object') {
+        picked.webActivity.sites = {};
+        for (const host of Object.keys(SAStorage.defaultState().webActivity.sites)) {
+          if (typeof changes.webActivity.sites[host] === 'boolean') {
+            picked.webActivity.sites[host] = changes.webActivity.sites[host];
+          }
+        }
+      }
+    }
+
     if (typeof changes.debugOverlay === 'boolean') picked.debugOverlay = changes.debugOverlay;
     return picked;
   }
@@ -583,6 +598,12 @@ importScripts('lib/random.js', 'lib/storage.js', 'lib/logger.js');
       if (picked.schedule.start) next.schedule.start = picked.schedule.start;
       if (picked.schedule.end) next.schedule.end = picked.schedule.end;
       if (picked.schedule.days) Object.assign(next.schedule.days, picked.schedule.days);
+    }
+    if (picked.webActivity) {
+      if (typeof picked.webActivity.neutralClicks === 'boolean') {
+        next.webActivity.neutralClicks = picked.webActivity.neutralClicks;
+      }
+      if (picked.webActivity.sites) Object.assign(next.webActivity.sites, picked.webActivity.sites);
     }
     if (typeof picked.debugOverlay === 'boolean') next.debugOverlay = picked.debugOverlay;
 
@@ -832,6 +853,20 @@ importScripts('lib/random.js', 'lib/storage.js', 'lib/logger.js');
         case 'CLEAR_PAUSE_REASON':
           await clearPauseReason({ userInitiated: message.userInitiated !== false });
           return { ok: true, state: await getState() };
+
+        case 'LOG': {
+          const level = ['debug', 'info', 'warn', 'error'].includes(message.level) ? message.level : 'info';
+          if (SALogger && typeof SALogger[level] === 'function') {
+            SALogger[level]('keepactive-content', String(message.message || '').slice(0, 200), message.data);
+          }
+          return { ok: true };
+        }
+
+        case 'USER_ACTIVITY': {
+          // Real (isTrusted) input seen in a Teams tab; same path as chrome.idle 'active'.
+          await handleIdleState('active');
+          return { ok: true };
+        }
 
         case 'UPDATE_SETTINGS':
           await updateSettings(message.changes);

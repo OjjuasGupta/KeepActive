@@ -67,6 +67,20 @@ check('computeEffective is true when enabled and in schedule', computed === true
 const paused = S.computeEffective({ enabled: true, pauseReason: 'activity', schedule: schedule() }, at(2026, 11, 9, 10, 0));
 check('computeEffective is false while paused', paused === false);
 
+const fresh = S.defaultState();
+check('defaults enable neutral clicks and both Teams sites',
+  fresh.webActivity.neutralClicks === true &&
+  fresh.webActivity.sites['teams.microsoft.com'] === true &&
+  fresh.webActivity.sites['teams.cloud.microsoft'] === true);
+const legacy = S.normalize({ enabled: true });
+check('normalize fills webActivity for pre-1.2 state', legacy.webActivity.neutralClicks === true);
+const custom = S.normalize({ webActivity: { neutralClicks: false, sites: { 'teams.cloud.microsoft': false, 'evil.example': true } } });
+check('normalize keeps site opt-outs and drops unknown hosts',
+  custom.webActivity.neutralClicks === false &&
+  custom.webActivity.sites['teams.cloud.microsoft'] === false &&
+  custom.webActivity.sites['teams.microsoft.com'] === true &&
+  !('evil.example' in custom.webActivity.sites));
+
 console.log('');
 if (failures) {
   console.error(`${failures} test(s) failed.`);

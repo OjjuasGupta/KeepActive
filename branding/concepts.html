@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive symbol concepts</title>
+<style>
+  body { margin: 0; padding: 56px 64px; background: #F3EFE5; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: #2A2220; }
+  h1 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; }
+  p.sub { margin: 0 0 40px; color: #6E625B; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .card { background: #FBF8F1; border: 1px solid #E2DCCE; border-radius: 20px; padding: 32px; }
+  .hero { display: flex; justify-content: center; }
+  .label { margin-top: 24px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #A11D2C; font-weight: 600; }
+  .name { font-size: 20px; font-weight: 600; margin-top: 4px; }
+  .desc { font-size: 13.5px; color: #5E5550; line-height: 1.55; margin-top: 8px; min-height: 64px; }
+  .sizes { display: flex; gap: 18px; align-items: center; margin-top: 20px; }
+  .bar { display: flex; gap: 14px; align-items: center; padding: 10px 14px; border-radius: 10px; }
+  .bar.dark { background: #202124; }
+  .bar.light { background: #FFFFFF; border: 1px solid #E2DCCE; }
+</style>
+</head>
+<body>
+<h1>KeepActive — symbol concepts (no letterform)</h1>
+<p class="sub">Cream on crimson. Shown at 220 px, then 48 / 32 / 16 px on light and dark Chrome toolbars.</p>
+<div class="grid" id="grid"></div>
+<script>
+  const CRIMSON_TOP = '#B02536', CRIMSON_BOTTOM = '#8A1626', CREAM = '#F6EDDF';
+
+  function squircle(r = 232, n = 5, steps = 192) {
+    const pts = [];
+    for (let i = 0; i < steps; i++) {
+      const t = (i / steps) * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
+      pts.push(`${(256 + r * Math.sign(c) * Math.abs(c) ** (2 / n)).toFixed(2)} ${(256 + r * Math.sign(s) * Math.abs(s) ** (2 / n)).toFixed(2)}`);
+    }
+    return `M ${pts.join(' L ')} Z`;
+  }
+
+  // Each concept returns inner SVG for a 512 canvas; `small` = 16/32 px optical variant.
+  const CONCEPTS = [
+    {
+      id: 'awake', label: 'Concept A', name: 'Awake',
+      desc: 'An open eye reduced to a lens and a pupil. Says “stays awake” without a word; calm and symmetrical.',
+      draw: small => {
+        const half = small ? 158 : 146, sag = small ? 104 : 92;
+        const r = ((half * half) + sag * sag) / (2 * sag);
+        const L = 256 - half, R = 256 + half;
+        return `<path d="M${L} 256 A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${R} 256 A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${L} 256 Z" fill="${CREAM}"/>
+                <circle cx="256" cy="256" r="${small ? 46 : 48}" fill="${CRIMSON_BOTTOM}"/>`;
+      }
+    },
+    {
+      id: 'presence', label: 'Concept B', name: 'Presence',
+      desc: 'A disc with a status badge cut into its shoulder, the universal “I’m available” signal, abstracted.',
+      draw: small => {
+        const R = small ? 156 : 146, cx = small ? 244 : 240, cy = small ? 268 : 272;
+        const bx = cx + R * 0.72, by = cy - R * 0.72;
+        const cut = small ? 74 : 66, dot = small ? 46 : 40;
+        return `<mask id="m"><rect width="512" height="512" fill="#fff"/><circle cx="${bx}" cy="${by}" r="${cut}" fill="#000"/></mask>
+                <circle cx="${cx}" cy="${cy}" r="${R}" fill="${CREAM}" mask="url(#m)"/>
+                <circle cx="${bx}" cy="${by}" r="${dot}" fill="${CREAM}"/>`;
+      }
+    },
+    {
+      id: 'pulse', label: 'Concept C', name: 'Steady pulse',
+      desc: 'One continuous wave: a calm, unbroken signal. Light and modern, reads as “always on”.',
+      draw: small => {
+        const w = small ? 64 : 50;
+        return `<path d="M118 256 C 168 128, 222 128, 256 256 S 344 384, 394 256" fill="none" stroke="${CREAM}" stroke-width="${w}" stroke-linecap="round"/>`;
+      }
+    }
+  ];
+
+  function svg(concept, size) {
+    const small = size <= 32;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
+      <defs><linearGradient id="bg" x1="0" y1="24" x2="0" y2="488" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="${CRIMSON_TOP}"/><stop offset="1" stop-color="${CRIMSON_BOTTOM}"/></linearGradient></defs>
+      <path d="${squircle()}" fill="url(#bg)"/>
+      ${concept.draw(small)}
+    </svg>`;
+  }
+
+  const grid = document.getElementById('grid');
+  for (const c of CONCEPTS) {
+    const sizes = [48, 32, 16].map(s => svg(c, s)).join('');
+    grid.insertAdjacentHTML('beforeend', `
+      <div class="card">
+        <div class="hero">${svg(c, 220)}</div>
+        <div class="label">${c.label}</div>
+        <div class="name">${c.name}</div>
+        <div class="desc">${c.desc}</div>
+        <div class="sizes"><div class="bar light">${sizes}</div><div class="bar dark">${sizes}</div></div>
+      </div>`);
+  }
+</script>
+</body>
+</html>

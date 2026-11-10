@@ -7,73 +7,80 @@
 <body>
 <script>
   /*
-   * Production renderer for the KeepActive K monogram.
+   * Production renderer for the KeepActive "Presence" mark.
    *
-   * The mark is drawn on a 512-unit canvas. Large sizes use the full
-   * gradient, rim light, and ambient glow. Compact sizes (16/32) drop the
-   * decorative layers and use a thicker, solid mint K so the silhouette
-   * survives Chrome's toolbar rasterization.
+   * A cream disc with a status badge cut into its upper-right shoulder, on a
+   * crimson superellipse tile. The badge carries the state:
+   *   active  -> solid dot   (crimson tile)
+   *   paused  -> ring        (stone tile)
+   *   off     -> empty notch (charcoal tile, dimmed disc)
+   *
+   * Flat by design: one subtle vertical tile gradient and, at 48 px and up,
+   * a faint top-edge highlight. 16/32 px use a larger disc and wider notch so
+   * the badge stays separated after toolbar rasterization.
    */
 
+  const CREAM = '#F6EDDF';
   const PALETTES = {
-    green: {
-      bg1: '#0C3B2F', bg2: '#041A15',
-      solidBg: '#06271F',
-      glow: '#34D399', glowOpacity: 0.20,
-      rim: '#A7F3D0', rimOpacity: 0.16,
-      k1: '#D6FBEA', k2: '#3EE0A1', k3: '#047857',
-      solidK: '#45E3A6'
-    },
-    dim: {
-      bg1: '#1A2A24', bg2: '#080E0C',
-      solidBg: '#121D19',
-      glow: '#94A3B8', glowOpacity: 0.06,
-      rim: '#CBD5E1', rimOpacity: 0.10,
-      k1: '#D7E4DC', k2: '#8AA99A', k3: '#466052',
-      solidK: '#9DB8A9'
-    },
-    red: {
-      bg1: '#38131A', bg2: '#160608',
-      solidBg: '#2A0C11',
-      glow: '#FB7185', glowOpacity: 0.14,
-      rim: '#FDA4AF', rimOpacity: 0.16,
-      k1: '#FFE4E6', k2: '#FB7185', k3: '#BE123C',
-      solidK: '#FB7185'
-    }
+    green: { top: '#B02536', bottom: '#8A1626', mark: CREAM, opacity: 1, badge: 'dot' },
+    dim: { top: '#9C9084', bottom: '#7D7268', mark: CREAM, opacity: 0.95, badge: 'ring' },
+    red: { top: '#3D3532', bottom: '#2A2422', mark: CREAM, opacity: 0.6, badge: 'none' }
   };
+
+  // Superellipse tile, |x|^n + |y|^n = r^n.
+  function squirclePath(cx, cy, r, n = 5, steps = 192) {
+    const pts = [];
+    for (let i = 0; i < steps; i++) {
+      const t = (i / steps) * Math.PI * 2;
+      const c = Math.cos(t), s = Math.sin(t);
+      const x = cx + r * Math.sign(c) * Math.pow(Math.abs(c), 2 / n);
+      const y = cy + r * Math.sign(s) * Math.pow(Math.abs(s), 2 / n);
+      pts.push(`${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return `M ${pts.join(' L ')} Z`;
+  }
+
+  function geometry(size) {
+    if (size <= 16) return { R: 166, cx: 242, cy: 270, cut: 82, dot: 50, ring: 22 };
+    if (size <= 32) return { R: 156, cx: 244, cy: 268, cut: 74, dot: 46, ring: 20 };
+    return { R: 146, cx: 240, cy: 272, cut: 66, dot: 40, ring: 16 };
+  }
 
   function buildSvg(state, size) {
     const p = PALETTES[state] || PALETTES.green;
-    const compact = size <= 32;
-    const stroke = compact ? 48 : 44;
+    const g = geometry(size);
+    const bx = (g.cx + g.R * 0.72).toFixed(2);
+    const by = (g.cy - g.R * 0.72).toFixed(2);
 
-    if (compact) {
-      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
-        <rect x="24" y="24" width="464" height="464" rx="116" fill="${p.solidBg}"/>
-        <path d="M187 154 L187 358" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
-        <path d="M201 254 L325 150" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
-        <path d="M201 266 L325 370" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
-      </svg>`;
+    let badge = '';
+    if (p.badge === 'dot') {
+      badge = `<circle cx="${bx}" cy="${by}" r="${g.dot}" fill="${p.mark}"/>`;
+    } else if (p.badge === 'ring') {
+      badge = `<circle cx="${bx}" cy="${by}" r="${g.dot - g.ring / 2}" fill="none" stroke="${p.mark}" stroke-width="${g.ring}"/>`;
     }
+
+    const highlight = size <= 32 ? '' : `
+      <path d="${squirclePath(256, 256, 231)}" fill="none" stroke="url(#hl)" stroke-width="3"/>`;
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
       <defs>
-        <linearGradient id="bg" x1="104" y1="56" x2="420" y2="470" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/>
+        <linearGradient id="bg" x1="0" y1="24" x2="0" y2="488" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="${p.top}"/><stop offset="1" stop-color="${p.bottom}"/>
         </linearGradient>
-        <linearGradient id="k" x1="166" y1="138" x2="336" y2="384" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="${p.k1}"/><stop offset=".5" stop-color="${p.k2}"/><stop offset="1" stop-color="${p.k3}"/>
+        <linearGradient id="hl" x1="0" y1="24" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
         </linearGradient>
-        <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(224)" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="${p.glow}" stop-opacity="${p.glowOpacity}"/><stop offset="1" stop-color="${p.glow}" stop-opacity="0"/>
-        </radialGradient>
+        <mask id="notch">
+          <rect width="512" height="512" fill="#FFFFFF"/>
+          <circle cx="${bx}" cy="${by}" r="${g.cut}" fill="#000000"/>
+        </mask>
       </defs>
-      <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg)"/>
-      <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="${p.rim}" stroke-opacity="${p.rimOpacity}" stroke-width="2"/>
-      <circle cx="256" cy="250" r="224" fill="url(#glow)"/>
-      <path d="M187 148 L187 364" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
-      <path d="M201 252 L325 146" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
-      <path d="M201 268 L325 374" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
+      <path d="${squirclePath(256, 256, 232)}" fill="url(#bg)"/>
+      ${highlight}
+      <g opacity="${p.opacity}">
+        <circle cx="${g.cx}" cy="${g.cy}" r="${g.R}" fill="${p.mark}" mask="url(#notch)"/>
+        ${badge}
+      </g>
     </svg>`;
   }
 
@@ -92,13 +99,24 @@
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingQuality = 'high';
     ctx.clearRect(0, 0, size, size);
     ctx.drawImage(img, 0, 0, size, size);
     return canvas.toDataURL('image/png');
   }
 
   async function renderIcon(state, size) {
-    return renderSvg(buildSvg(state, size), size);
+    // Render 4x then downsample for cleaner small sizes.
+    const big = await renderSvg(buildSvg(state, size), size * 4);
+    const img = new Image();
+    await new Promise(r => { img.onload = r; img.src = big; });
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, size, size);
+    return canvas.toDataURL('image/png');
   }
 </script>
 </body>

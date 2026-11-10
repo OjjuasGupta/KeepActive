@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: Manter a tela ligada e ficar ativo",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Mantenha a tela ligada e envie atividade leve ao Microsoft Teams na web. Horários de trabalho, Smart Pause, sem rastreamento.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "Ativar/desativar o KeepActive",
+    "description": "Keyboard shortcut description."
+  }
+}

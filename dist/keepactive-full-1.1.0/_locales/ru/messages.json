@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: Не выключать экран и оставаться активным",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Не даёт экрану гаснуть и отправляет лёгкую активность в веб-версию Microsoft Teams. Расписание, Smart Pause, без слежки.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "Включить/выключить KeepActive",
+    "description": "Keyboard shortcut description."
+  }
+}

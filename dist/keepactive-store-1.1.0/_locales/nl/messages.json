@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: Scherm wakker houden & actief blijven",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Houd je scherm wakker en stuur subtiele activiteit naar Microsoft Teams op het web. Werkschema's, Smart Pause, geen tracking.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "KeepActive aan/uit",
+    "description": "Keyboard shortcut description."
+  }
+}

@@ -1,0 +1,35 @@
+Sunum, pano veya uzun bir indirme sırasında ekranınızın uykuya geçmesini engelleyin. KeepActive, Chrome çalıştığı sürece ekranınızı açık tutar ve yalnızca sizin belirlediğiniz programa göre web üzerindeki Microsoft Teams'e insan temposunda, nazik bir etkinlik gönderir. Klavyeye veya fareye dokunduğunuz anda hemen devreden çekilir.
+
+NEDEN KULLANILIYOR
+
+• Açık kalması gereken sunumlar, panolar ve izleme ekranları.
+• Uzun indirmeler, render işlemleri, yüklemeler ve okuma oturumları.
+• Uzun süren pasif çalışma oturumlarında Teams web sekmesinin boşta görünmesini önleme.
+
+NE YAPAR
+
+• Ekranı açık tut: KeepActive etkinken ve Chrome çalışırken Chrome'dan ekranı açık tutmasını ister.
+• Web'de Teams etkinliği: varsayılan olarak her 60–150 saniyede bir küçük, rastgele işaretçi hareketleri, Shift tuşu vuruşları ve odak sinyalleri gönderir; ayrıca sayfanın boş arka planına isteğe bağlı bir tıklama ekleyebilirsiniz. Düğmelere, bağlantılara veya giriş alanlarına asla tıklamaz, metin yazmaz, mesajları okumaz ve Teams içeriğini değiştirmez. Arka plan tıklamaları ve her Teams sitesi kapatılabilir.
+• Çalışma programları: yalnızca seçtiğiniz gün ve saatlerde çalışır; gece vardiyaları dahildir.
+• Smart Pause: bilgisayarınızın boşta sinyalini kullanarak siz çalışırken duraklar, seçtiğiniz boşta bekleme süresinden sonra devam eder.
+• Tek tıkla araç çubuğu kontrolü, Alt+Shift+S kısayolu, oturum güvenlik sınırı ve yerel tanılama.
+
+NASIL KULLANILIR
+
+1. KeepActive'i araç çubuğuna sabitleyin ve açın.
+2. Bir Microsoft Teams web sekmesini açık tutun (normal sekme en iyi sonucu verir).
+3. İsteğe bağlı: Control Deck'te çalışma programı ve Smart Pause gecikmesini ayarlayın.
+
+ÖNCE GİZLİLİK
+
+• Hesap, analiz, reklam, izleme veya üçüncü taraf istekleri yok.
+• Ayarlar ve tanılama verileri tarayıcı profilinizde (chrome.storage.local) kalır.
+• Bu pakette yerel uygulama veya yükleyici yoktur.
+
+BİLMENİZ GEREKENLER
+
+• KeepActive, Microsoft Teams durum bilgisini (presence) garanti etmez. Durum bilgisini Microsoft kontrol eder.
+• Ekran kilidini, Intune'u, Grup İlkesi'ni, MDM'yi, EDR'yi veya diğer şirket denetimlerini aşmaz.
+• Chrome 116 veya daha yenisini gerektirir. Ekranın açık kalması için Chrome çalışıyor olmalıdır.
+
+Microsoft ve Microsoft Teams, Microsoft Corporation'ın ticari markalarıdır. KeepActive, Microsoft ile bağlantılı değildir ve Microsoft tarafından onaylanmamıştır.

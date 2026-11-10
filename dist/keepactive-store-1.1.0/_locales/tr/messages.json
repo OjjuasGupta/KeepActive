@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: Ekranı Açık Tut ve Aktif Kal",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Ekranınızı açık tutar ve web'deki Microsoft Teams'e hafif etkinlik gönderir. Çalışma programı, Smart Pause, izleme yok.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "KeepActive'i aç/kapat",
+    "description": "Keyboard shortcut description."
+  }
+}

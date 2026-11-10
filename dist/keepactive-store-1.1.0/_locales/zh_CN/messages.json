@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive：保持屏幕常亮，保持在线活跃",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "防止屏幕休眠，并向网页版 Microsoft Teams 发送轻微活动。支持工作时间表和 Smart Pause，无任何跟踪。",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "开启/关闭 KeepActive",
+    "description": "Keyboard shortcut description."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: 화면 꺼짐 방지 & 활동 상태 유지",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "화면이 꺼지지 않게 하고 웹용 Microsoft Teams에 가벼운 활동을 보냅니다. 근무 일정, Smart Pause, 추적 없음.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "KeepActive 켜기/끄기",
+    "description": "Keyboard shortcut description."
+  }
+}

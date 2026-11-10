@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive icon renderer</title>
+</head>
+<body>
+<script>
+  /*
+   * Production renderer for the KeepActive K monogram.
+   *
+   * The mark is drawn on a 512-unit canvas. Large sizes use the full
+   * gradient, rim light, and ambient glow. Compact sizes (16/32) drop the
+   * decorative layers and use a thicker, solid mint K so the silhouette
+   * survives Chrome's toolbar rasterization.
+   */
+
+  const PALETTES = {
+    green: {
+      bg1: '#0C3B2F', bg2: '#041A15',
+      solidBg: '#06271F',
+      glow: '#34D399', glowOpacity: 0.20,
+      rim: '#A7F3D0', rimOpacity: 0.16,
+      k1: '#D6FBEA', k2: '#3EE0A1', k3: '#047857',
+      solidK: '#45E3A6'
+    },
+    dim: {
+      bg1: '#1A2A24', bg2: '#080E0C',
+      solidBg: '#121D19',
+      glow: '#94A3B8', glowOpacity: 0.06,
+      rim: '#CBD5E1', rimOpacity: 0.10,
+      k1: '#D7E4DC', k2: '#8AA99A', k3: '#466052',
+      solidK: '#9DB8A9'
+    },
+    red: {
+      bg1: '#38131A', bg2: '#160608',
+      solidBg: '#2A0C11',
+      glow: '#FB7185', glowOpacity: 0.14,
+      rim: '#FDA4AF', rimOpacity: 0.16,
+      k1: '#FFE4E6', k2: '#FB7185', k3: '#BE123C',
+      solidK: '#FB7185'
+    }
+  };
+
+  function buildSvg(state, size) {
+    const p = PALETTES[state] || PALETTES.green;
+    const compact = size <= 32;
+    const stroke = compact ? 48 : 44;
+
+    if (compact) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
+        <rect x="24" y="24" width="464" height="464" rx="116" fill="${p.solidBg}"/>
+        <path d="M187 154 L187 358" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
+        <path d="M201 254 L325 150" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
+        <path d="M201 266 L325 370" fill="none" stroke="${p.solidK}" stroke-width="${stroke}" stroke-linecap="round"/>
+      </svg>`;
+    }
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
+      <defs>
+        <linearGradient id="bg" x1="104" y1="56" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/>
+        </linearGradient>
+        <linearGradient id="k" x1="166" y1="138" x2="336" y2="384" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="${p.k1}"/><stop offset=".5" stop-color="${p.k2}"/><stop offset="1" stop-color="${p.k3}"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(224)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="${p.glow}" stop-opacity="${p.glowOpacity}"/><stop offset="1" stop-color="${p.glow}" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg)"/>
+      <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="${p.rim}" stroke-opacity="${p.rimOpacity}" stroke-width="2"/>
+      <circle cx="256" cy="250" r="224" fill="url(#glow)"/>
+      <path d="M187 148 L187 364" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
+      <path d="M201 252 L325 146" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
+      <path d="M201 268 L325 374" fill="none" stroke="url(#k)" stroke-width="${stroke}" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  function svgUrl(svg) {
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+
+  async function renderSvg(svg, size) {
+    const img = new Image();
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = () => reject(new Error('SVG load failed'));
+      img.src = svgUrl(svg);
+    });
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, size, size);
+    ctx.drawImage(img, 0, 0, size, size);
+    return canvas.toDataURL('image/png');
+  }
+
+  async function renderIcon(state, size) {
+    return renderSvg(buildSvg(state, size), size);
+  }
+</script>
+</body>
+</html>

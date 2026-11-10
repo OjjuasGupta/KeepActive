@@ -1,0 +1,9 @@
+{
+  "name": "keepactive_helper",
+  "description": "KeepActive native helper (optional local OS input for the full build)",
+  "path": "{{LAUNCHER_PATH}}",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://{{EXTENSION_ID}}/"
+  ]
+}

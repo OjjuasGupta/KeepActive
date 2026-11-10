@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KeepActive</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="../icons/icon32.png" alt="KeepActive logo" class="brand-icon" id="brandIcon">
+        <div class="brand-meta">
+          <span class="brand-name">KeepActive</span>
+          <span class="brand-tagline">Display &amp; Activity Guard</span>
+        </div>
+      </div>
+      <span class="version-pill">v1.1.0</span>
+    </header>
+
+    <!-- Master Control Card -->
+    <div class="power-deck">
+      <label class="hero-toggle" title="Toggle KeepActive Master Power">
+        <input type="checkbox" id="masterToggle" aria-label="Toggle KeepActive Master Power Switch">
+        <div class="hero-switch-track">
+          <div class="hero-switch-handle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+              <line x1="12" y1="2" x2="12" y2="12"/>
+            </svg>
+          </div>
+        </div>
+      </label>
+
+      <div class="status-capsule off" id="statusBadge">
+        <span class="status-pulse-dot"></span>
+        <span id="statusText">Status: Inactive</span>
+      </div>
+
+      <div class="deck-metrics">
+        <span><span class="metric-label">Uptime:</span> <strong id="uptime" class="metric-val">00:00:00</strong></span>
+        <span id="nextSchedule" class="metric-val" style="color: #94a3b8;">Manual Mode</span>
+      </div>
+    </div>
+
+    <!-- Active Engines -->
+    <div class="modes-container">
+      <div class="section-eyebrow">Operating Engines</div>
+
+      <label class="mode-card">
+        <div class="mode-icon-group">
+          <div class="mode-icon-symbol">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div>
+            <div class="mode-title">Display Keep-Awake</div>
+            <div class="mode-sub">Prevents display sleep while Chrome runs</div>
+          </div>
+        </div>
+        <div class="micro-switch">
+          <input type="checkbox" id="modeKeepAwake" checked>
+          <span class="micro-slider"></span>
+        </div>
+      </label>
+
+      <label class="mode-card">
+        <div class="mode-icon-group">
+          <div class="mode-icon-symbol" style="color: #34d399;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <div>
+            <div class="mode-title">Teams Web Activity</div>
+            <div class="mode-sub">Periodic pointer and key activity</div>
+          </div>
+        </div>
+        <div class="micro-switch">
+          <input type="checkbox" id="modeTeamsWeb" checked>
+          <span class="micro-slider"></span>
+        </div>
+      </label>
+
+      <label class="mode-card" id="nativeCard" hidden>
+        <div class="mode-icon-group">
+          <div class="mode-icon-symbol" style="color: #0284c7;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="12" rx="2"/>
+              <path d="M8 20h8"/>
+              <path d="M12 16v4"/>
+              <path d="M7 10h2"/>
+              <path d="M13 8l2 2-2 2"/>
+            </svg>
+          </div>
+          <div>
+            <div class="mode-title">Native Desktop Helper</div>
+            <div class="mode-sub" id="nativeHelperStatus">Optional full build</div>
+          </div>
+        </div>
+        <div class="micro-switch">
+          <input type="checkbox" id="modeNativeHelper">
+          <span class="micro-slider"></span>
+        </div>
+      </label>
+      <p class="native-hint" id="nativeHint" hidden></p>
+    </div>
+
+    <!-- Actions Control Row -->
+    <div class="action-grid">
+      <button id="pauseBtn" class="glass-btn primary" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+          <rect x="14" y="4" width="4" height="16" rx="1.5"/>
+        </svg>
+        <span>Pause Simulation</span>
+      </button>
+      <button id="optionsBtn" class="glass-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span>Control Deck</span>
+      </button>
+      <button id="setupGuideBtn" class="glass-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16v-4"/>
+          <path d="M12 8h.01"/>
+        </svg>
+        <span>Setup Guide</span>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <a href="#" id="disclaimerLink">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Privacy Policy & Transparency</span>
+      </a>
+    </footer>
+  </div>
+
+  <script src="../lib/random.js"></script>
+  <script src="../lib/storage.js"></script>
+  <script src="../lib/logger.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

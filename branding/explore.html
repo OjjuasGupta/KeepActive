@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive logo exploration</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1560px; min-height: 1180px;
+    font-family: "Segoe UI", sans-serif;
+    background: #ece9e0;
+    color: #1c1917;
+    padding: 42px 48px;
+  }
+  h1 { font-size: 26px; letter-spacing: -0.03em; }
+  .sub { color: #6b6560; font-size: 14px; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 30px; }
+  .card {
+    background: #faf8f2;
+    border: 1px solid #ddd8cc;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(60,50,40,.06);
+  }
+  .stage {
+    height: 260px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(145deg, #e7e3d9, #f4f1e9);
+    border: 1px solid #e3ded2;
+  }
+  .stage.dark { background: linear-gradient(145deg, #1f2724, #111815); border-color: #2c3833; }
+  .icon-large { width: 210px; height: 210px; display: block; filter: drop-shadow(0 18px 26px rgba(20,30,25,.24)); }
+  .name { font-size: 16px; font-weight: 650; margin-top: 18px; letter-spacing: -0.01em; }
+  .desc { font-size: 12.5px; line-height: 1.5; color: #6b6560; margin-top: 5px; min-height: 38px; }
+  .sizes { display: flex; align-items: end; gap: 18px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #e4dfd4; }
+  .size { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .size span { font-size: 10px; color: #8a837b; font-family: ui-monospace, Consolas, monospace; }
+  .tc { background: #fff; border-radius: 6px; padding: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.06); }
+  .tc.dark-bg { background: #202724; }
+</style>
+</head>
+<body>
+  <h1>KeepActive — premium mark exploration</h1>
+  <p class="sub">Vector concepts shown at 210 px and at real extension sizes: 16 / 32 / 48 px.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="stage dark">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="Power Wake">
+          <defs>
+            <linearGradient id="bgA" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#0B3A2E"/><stop offset="1" stop-color="#041A15"/>
+            </linearGradient>
+            <linearGradient id="mA" x1="170" y1="180" x2="350" y2="370" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#A7F3D0"/><stop offset=".55" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/>
+            </linearGradient>
+            <radialGradient id="glowA" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(190)" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#34D399" stop-opacity=".22"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgA)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <circle cx="256" cy="260" r="190" fill="url(#glowA)"/>
+          <path d="M294.6 190.9 A88 88 0 1 1 217.4 190.9" fill="none" stroke="url(#mA)" stroke-width="35" stroke-linecap="round"/>
+          <path d="M256 179 L256 264" fill="none" stroke="url(#mA)" stroke-width="31" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">A · Power Wake</div>
+      <div class="desc">A refined power symbol: steady ring, clear “on” stem. Instantly readable, calm, and product-true.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc dark-bg"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#a16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#a32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#a48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage dark">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="Orbit">
+          <defs>
+            <linearGradient id="bgB" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#0B3A2E"/><stop offset="1" stop-color="#041A15"/>
+            </linearGradient>
+            <linearGradient id="mB" x1="180" y1="180" x2="360" y2="380" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#D1FAE5"/><stop offset=".5" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgB)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <path d="M342.7 254.7 A88 88 0 1 1 286.1 187.3" fill="none" stroke="url(#mB)" stroke-width="35" stroke-linecap="round"/>
+          <circle cx="256" cy="270" r="38" fill="url(#mB)"/>
+          <circle cx="326" cy="210" r="17" fill="#A7F3D0"/>
+        </svg>
+      </div>
+      <div class="name">B · Active Orbit</div>
+      <div class="desc">A continuous orbit with a satellite spark. More distinctive, but the satellite adds visual noise at 16 px.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc dark-bg"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#b16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#b32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#b48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage dark">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="Sunrise">
+          <defs>
+            <linearGradient id="bgC" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#0B3A2E"/><stop offset="1" stop-color="#041A15"/>
+            </linearGradient>
+            <linearGradient id="mC" x1="180" y1="200" x2="340" y2="350" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#D1FAE5"/><stop offset=".55" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgC)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <circle cx="256" cy="248" r="50" fill="url(#mC)"/>
+          <path d="M144 334 Q256 290 368 334" fill="none" stroke="url(#mC)" stroke-width="31" stroke-linecap="round"/>
+          <path d="M160 228 A104 104 0 0 1 352 228" fill="none" stroke="#A7F3D0" stroke-opacity=".28" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">C · First Light</div>
+      <div class="desc">A rising sun over a horizon. Optimistic and warm, but closer to a generic wellness or weather mark.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc dark-bg"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#c16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#c32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#c48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage dark">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="K monogram">
+          <defs>
+            <linearGradient id="bgD" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#0B3A2E"/><stop offset="1" stop-color="#041A15"/>
+            </linearGradient>
+            <linearGradient id="mD" x1="190" y1="170" x2="340" y2="360" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#D1FAE5"/><stop offset=".5" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgD)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <path d="M202 156 L202 356" fill="none" stroke="url(#mD)" stroke-width="40" stroke-linecap="round"/>
+          <path d="M216 256 L330 154" fill="none" stroke="url(#mD)" stroke-width="40" stroke-linecap="round"/>
+          <path d="M216 266 L330 366" fill="none" stroke="url(#mD)" stroke-width="40" stroke-linecap="round"/>
+          <circle cx="354" cy="150" r="15" fill="#A7F3D0"/>
+        </svg>
+      </div>
+      <div class="name">D · K Monogram</div>
+      <div class="desc">A custom geometric K with a spark. Strong brand ownership and excellent small-size recognition.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc dark-bg"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#d16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#d32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc dark-bg"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#d48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="Power Wake light">
+          <defs>
+            <linearGradient id="bgE" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#FDFBF5"/><stop offset="1" stop-color="#EFEADF"/>
+            </linearGradient>
+            <linearGradient id="mE" x1="180" y1="180" x2="350" y2="370" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#10B981"/><stop offset=".55" stop-color="#059669"/><stop offset="1" stop-color="#064E3B"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgE)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#064E3B" stroke-opacity=".12" stroke-width="2"/>
+          <path d="M294.6 190.9 A88 88 0 1 1 217.4 190.9" fill="none" stroke="url(#mE)" stroke-width="35" stroke-linecap="round"/>
+          <path d="M256 179 L256 264" fill="none" stroke="url(#mE)" stroke-width="31" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">E · Power Wake, light</div>
+      <div class="desc">The same mark on warm ivory. Cohesive with the product UI, softer in the toolbar, less contrast on light chrome.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#e16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#e32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#e48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage">
+        <svg class="icon-large" viewBox="0 0 512 512" aria-label="K monogram light">
+          <defs>
+            <linearGradient id="bgF" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#FDFBF5"/><stop offset="1" stop-color="#EFEADF"/>
+            </linearGradient>
+            <linearGradient id="mF" x1="190" y1="170" x2="340" y2="360" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#10B981"/><stop offset=".55" stop-color="#059669"/><stop offset="1" stop-color="#064E3B"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bgF)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#064E3B" stroke-opacity=".12" stroke-width="2"/>
+          <path d="M202 156 L202 356" fill="none" stroke="url(#mF)" stroke-width="40" stroke-linecap="round"/>
+          <path d="M216 256 L330 154" fill="none" stroke="url(#mF)" stroke-width="40" stroke-linecap="round"/>
+          <path d="M216 266 L330 366" fill="none" stroke="url(#mF)" stroke-width="40" stroke-linecap="round"/>
+          <circle cx="354" cy="150" r="15" fill="#059669"/>
+        </svg>
+      </div>
+      <div class="name">F · K Monogram, light</div>
+      <div class="desc">Monogram on ivory. Elegant and consistent with the Control Deck, with a quieter toolbar presence.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#f16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#f32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#f48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reusable symbols for the small-size previews -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="smA" x1="170" y1="180" x2="350" y2="370" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#A7F3D0"/><stop offset=".55" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/></linearGradient>
+      <linearGradient id="smB" x1="180" y1="180" x2="360" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".5" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/></linearGradient>
+      <linearGradient id="smC" x1="180" y1="200" x2="340" y2="350" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".55" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/></linearGradient>
+      <linearGradient id="smD" x1="190" y1="170" x2="340" y2="360" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".5" stop-color="#34D399"/><stop offset="1" stop-color="#059669"/></linearGradient>
+      <linearGradient id="smE" x1="180" y1="180" x2="350" y2="370" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#10B981"/><stop offset=".55" stop-color="#059669"/><stop offset="1" stop-color="#064E3B"/></linearGradient>
+    </defs>
+    <g id="a16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M294.6 190.9 A88 88 0 1 1 217.4 190.9" fill="none" stroke="url(#smA)" stroke-width="35" stroke-linecap="round"/><path d="M256 179 L256 264" fill="none" stroke="url(#smA)" stroke-width="31" stroke-linecap="round"/></g>
+    <g id="a32"><use href="#a16"/></g><g id="a48"><use href="#a16"/></g>
+    <g id="b16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M342.7 254.7 A88 88 0 1 1 286.1 187.3" fill="none" stroke="url(#smB)" stroke-width="35" stroke-linecap="round"/><circle cx="256" cy="270" r="38" fill="url(#smB)"/><circle cx="326" cy="210" r="17" fill="#A7F3D0"/></g>
+    <g id="b32"><use href="#b16"/></g><g id="b48"><use href="#b16"/></g>
+    <g id="c16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><circle cx="256" cy="248" r="50" fill="url(#smC)"/><path d="M144 334 Q256 290 368 334" fill="none" stroke="url(#smC)" stroke-width="31" stroke-linecap="round"/></g>
+    <g id="c32"><use href="#c16"/></g><g id="c48"><use href="#c16"/></g>
+    <g id="d16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 156 L202 356" fill="none" stroke="url(#smD)" stroke-width="40" stroke-linecap="round"/><path d="M216 256 L330 154" fill="none" stroke="url(#smD)" stroke-width="40" stroke-linecap="round"/><path d="M216 266 L330 366" fill="none" stroke="url(#smD)" stroke-width="40" stroke-linecap="round"/><circle cx="354" cy="150" r="15" fill="#A7F3D0"/></g>
+    <g id="d32"><use href="#d16"/></g><g id="d48"><use href="#d16"/></g>
+    <g id="e16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#F8F5ED"/><path d="M294.6 190.9 A88 88 0 1 1 217.4 190.9" fill="none" stroke="url(#smE)" stroke-width="35" stroke-linecap="round"/><path d="M256 179 L256 264" fill="none" stroke="url(#smE)" stroke-width="31" stroke-linecap="round"/></g>
+    <g id="e32"><use href="#e16"/></g><g id="e48"><use href="#e16"/></g>
+    <g id="f16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#F8F5ED"/><path d="M202 156 L202 356" fill="none" stroke="url(#smE)" stroke-width="40" stroke-linecap="round"/><path d="M216 256 L330 154" fill="none" stroke="url(#smE)" stroke-width="40" stroke-linecap="round"/><path d="M216 266 L330 366" fill="none" stroke="url(#smE)" stroke-width="40" stroke-linecap="round"/><circle cx="354" cy="150" r="15" fill="#059669"/></g>
+    <g id="f32"><use href="#f16"/></g><g id="f48"><use href="#f16"/></g>
+  </svg>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive store screenshot</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 800px; overflow: hidden; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    background: #f6f4ee;
+    color: #1c1917;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .glow-a, .glow-b { position: absolute; border-radius: 50%; filter: blur(2px); }
+  .glow-a {
+    width: 640px; height: 640px; right: -180px; top: -260px;
+    background: radial-gradient(circle, rgba(16,185,129,0.16), rgba(16,185,129,0) 68%);
+  }
+  .glow-b {
+    width: 520px; height: 520px; left: -220px; bottom: -260px;
+    background: radial-gradient(circle, rgba(2,132,199,0.10), rgba(2,132,199,0) 70%);
+  }
+  .copy {
+    width: 590px;
+    margin-left: 88px;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    color: #047857;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 7px 12px;
+    border-radius: 999px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; }
+  h1 {
+    margin-top: 26px;
+    font-size: 54px;
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    font-weight: 750;
+  }
+  h1 span { color: #059669; }
+  .lede {
+    margin-top: 22px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #57534e;
+    max-width: 520px;
+  }
+  .features { margin-top: 34px; display: grid; gap: 15px; }
+  .feature { display: flex; align-items: center; gap: 13px; font-size: 15.5px; color: #292524; }
+  .tick {
+    width: 26px; height: 26px; flex: 0 0 26px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #d6f5e7;
+    box-shadow: 0 2px 6px rgba(16,185,129,0.10);
+    display: flex; align-items: center; justify-content: center;
+    color: #059669; font-weight: 800; font-size: 14px;
+  }
+  .feature b { font-weight: 650; }
+  .feature small { color: #78716c; font-size: 13.5px; }
+  .meta {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12.5px; color: #78716c;
+  }
+  .meta .sep { width: 4px; height: 4px; border-radius: 50%; background: #a8a29e; }
+  .device {
+    position: absolute;
+    right: 92px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+      0 34px 70px rgba(41, 37, 36, 0.20),
+      0 8px 22px rgba(41, 37, 36, 0.10),
+      0 0 0 1px rgba(28, 25, 23, 0.06);
+    z-index: 2;
+    background: #f6f4ee;
+  }
+  .device img { display: block; width: 100%; }
+  .device::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 22px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.55);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+
+  <div class="copy">
+    <div class="eyebrow"><span class="dot"></span>CHROME EXTENSION · V1.1.0</div>
+    <h1>Stay active.<br><span>Stay local.</span></h1>
+    <p class="lede">Keep your display awake and send small activity events to Microsoft Teams on the web — with schedules, Smart Pause, and zero telemetry.</p>
+
+    <div class="features">
+      <div class="feature"><span class="tick">✓</span><span><b>One-click master control</b> <small>from the toolbar</small></span></div>
+      <div class="feature"><span class="tick">✓</span><span><b>Shift schedule + Smart Pause</b> <small>that follows your day</small></span></div>
+      <div class="feature"><span class="tick">✓</span><span><b>100% local</b> <small>no accounts, analytics, or remote requests</small></span></div>
+    </div>
+
+    <div class="meta">
+      <span>Browser-only build</span><span class="sep"></span>
+      <span>No native installer</span><span class="sep"></span>
+      <span>MV3</span>
+    </div>
+  </div>
+
+  <div class="device">
+    <img src="raw/popup.png" alt="KeepActive popup">
+  </div>
+</body>
+</html>

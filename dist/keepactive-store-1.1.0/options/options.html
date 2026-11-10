@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KeepActive Control Deck</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-wrapper">
+        <img src="../icons/icon48.png" alt="KeepActive brand logo" class="brand-badge-icon">
+        <div>
+          <h1>KeepActive Control Deck</h1>
+          <p class="subtitle">Fine-tune activity intervals, work schedules, and safety boundaries</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Simulation Intervals Card -->
+      <section class="deck-card">
+        <h2 class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Teams Web Activity Intervals (Seconds)
+        </h2>
+        <p class="card-description">Activity events trigger at randomized intervals within this range to add natural variation.</p>
+        <div class="inputs-grid">
+          <div class="input-block">
+            <label for="webMin">Minimum Interval (sec)</label>
+            <input type="number" id="webMin" min="10" max="3600" value="60">
+          </div>
+          <div class="input-block">
+            <label for="webMax">Maximum Interval (sec)</label>
+            <input type="number" id="webMax" min="11" max="3600" value="150">
+          </div>
+        </div>
+      </section>
+
+      <!-- Working Hours Schedule Card -->
+      <section class="deck-card">
+        <div class="card-top">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Automated Work Shifts
+          </h2>
+          <label class="toggle-inline">
+            <span class="switch-deck">
+              <input type="checkbox" id="schedEnabled">
+              <span class="slider-deck"></span>
+            </span>
+            <span>Enable Schedule</span>
+          </label>
+        </div>
+        <p class="card-description">Automatically engages Teams Web activity during specified shifts and pauses outside active working hours.</p>
+        
+        <div class="inputs-grid" id="scheduleFields">
+          <div class="input-block">
+            <label for="schedStart">Shift Start (24h)</label>
+            <input type="time" id="schedStart" value="09:30">
+          </div>
+          <div class="input-block">
+            <label for="schedEnd">Shift End (24h)</label>
+            <input type="time" id="schedEnd" value="18:30">
+          </div>
+        </div>
+
+        <div class="days-container">
+          <div class="days-eyebrow">Active Workdays</div>
+          <div class="pills-group day-toggles">
+            <label class="day-chip"><input type="checkbox" value="mon" checked><span>Mon</span></label>
+            <label class="day-chip"><input type="checkbox" value="tue" checked><span>Tue</span></label>
+            <label class="day-chip"><input type="checkbox" value="wed" checked><span>Wed</span></label>
+            <label class="day-chip"><input type="checkbox" value="thu" checked><span>Thu</span></label>
+            <label class="day-chip"><input type="checkbox" value="fri" checked><span>Fri</span></label>
+            <label class="day-chip"><input type="checkbox" value="sat"><span>Sat</span></label>
+            <label class="day-chip"><input type="checkbox" value="sun"><span>Sun</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Smart Pause Card -->
+      <section class="deck-card">
+        <div class="card-top">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+            Smart Pause (OS Idle Detection)
+          </h2>
+          <label class="toggle-inline">
+            <span class="switch-deck">
+              <input type="checkbox" id="smartPauseEnabled" checked>
+              <span class="slider-deck"></span>
+            </span>
+            <span>Enable Smart Pause</span>
+          </label>
+        </div>
+        <p class="card-description">Pauses activity whenever you interact with the workstation, and resumes once you become continuously idle.</p>
+        <div class="inputs-grid">
+          <div class="input-block">
+            <label for="resumeAfter">Resume Inactivity Delay (minutes)</label>
+            <input type="number" id="resumeAfter" min="1" max="120" value="2">
+          </div>
+          <div class="input-block">
+            <label for="idleThreshold">System Idle Threshold (seconds)</label>
+            <input type="number" id="idleThreshold" min="15" max="3600" value="15">
+          </div>
+        </div>
+      </section>
+
+      <!-- Optional Native Desktop Helper Card -->
+      <section class="deck-card" id="nativeHelperCard" hidden>
+        <div class="card-top">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="12" rx="2"/>
+              <path d="M8 20h8"/>
+              <path d="M12 16v4"/>
+              <path d="M7 10h2"/>
+              <path d="M13 8l2 2-2 2"/>
+            </svg>
+            Native Desktop Helper (Optional)
+          </h2>
+          <label class="toggle-inline">
+            <span class="switch-deck">
+              <input type="checkbox" id="nativeHelperEnabled">
+              <span class="slider-deck"></span>
+            </span>
+            <span>Enable Helper</span>
+          </label>
+        </div>
+        <p class="card-description">
+          Full build only. While you are idle, the helper nudges the operating-system pointer by a few pixels and restores it. This gives Microsoft Teams Desktop a real local input event. It never clicks, types text, or runs while you are actively using the keyboard or mouse.
+        </p>
+        <div class="inputs-grid">
+          <div class="input-block">
+            <label for="helperMin">Minimum Helper Interval (sec)</label>
+            <input type="number" id="helperMin" min="10" max="3600" value="45">
+          </div>
+          <div class="input-block">
+            <label for="helperMax">Maximum Helper Interval (sec)</label>
+            <input type="number" id="helperMax" min="11" max="3600" value="120">
+          </div>
+        </div>
+        <div class="helper-row">
+          <span id="nativeStatus" class="helper-status">Helper disabled</span>
+          <button id="testNative" class="btn-deck" type="button">Test Connection</button>
+        </div>
+        <p class="card-description helper-note">
+          Install from the full package: <code>native\install.ps1 -ExtensionId &lt;your extension ID&gt;</code>. On macOS/Linux use <code>native/install.sh --extension-id &lt;id&gt;</code>. Reload the extension after installing. Teams Desktop presence is controlled by Microsoft and is not guaranteed.
+        </p>
+      </section>
+
+      <!-- Safety & Diagnostics Card -->
+      <section class="deck-card">
+        <h2 class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Safety & Diagnostics
+        </h2>
+        <div class="inputs-grid">
+          <div class="input-block">
+            <label for="maxSession">Max Session Runtime (hours, 0 = unlimited)</label>
+            <input type="number" id="maxSession" min="0" max="72" value="0">
+          </div>
+        </div>
+        <div style="margin-top: 16px;">
+          <label class="toggle-inline">
+            <span class="switch-deck">
+              <input type="checkbox" id="debugOverlay">
+              <span class="slider-deck"></span>
+            </span>
+            <span>Display diagnostic activity badge in Teams tab</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Diagnostic Console Card -->
+      <section class="deck-card">
+        <h2 class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+          Diagnostic Console
+        </h2>
+        <div class="log-toolbar">
+          <button id="refreshLogs" class="btn-deck">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Refresh Logs
+          </button>
+          <button id="exportLogs" class="btn-deck">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export Log File
+          </button>
+          <button id="clearLogs" class="btn-deck danger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            Clear Console
+          </button>
+        </div>
+        <pre id="logView" class="log-view"></pre>
+      </section>
+
+      <!-- Danger Zone Card -->
+      <section class="deck-card" style="border-color: rgba(244, 63, 94, 0.35);">
+        <h2 class="card-title" style="color: #fb7185;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Reset Environment
+        </h2>
+        <p class="card-description">Restore all interval values, work shift timers, smart pause parameters, and logs back to defaults.</p>
+        <button id="resetAll" class="btn-deck danger">Reset All Configurations</button>
+      </section>
+    </main>
+
+    <footer>
+      <span>KeepActive v1.1.0 — Privacy-first, local execution only</span>
+      <button class="btn-deck" id="setupGuideBtn">Open Setup Guide</button>
+    </footer>
+  </div>
+
+  <script src="../lib/random.js"></script>
+  <script src="../lib/storage.js"></script>
+  <script src="../lib/logger.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive icon QA</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1500px;
+    font-family: "Segoe UI", sans-serif;
+    background: #ece9e0;
+    color: #1c1917;
+    padding: 36px 42px 42px;
+  }
+  h1 { font-size: 24px; letter-spacing: -0.03em; }
+  .sub { color: #6b6560; font-size: 13.5px; margin-top: 5px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 26px; }
+  .card { background: #faf8f2; border: 1px solid #ddd8cc; border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(60,50,40,.05); }
+  .title { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #78716c; margin-bottom: 14px; }
+  .bar { height: 48px; border-radius: 10px; display: flex; align-items: center; gap: 16px; padding: 0 16px; margin-bottom: 12px; }
+  .bar.light { background: #f6f4ee; border: 1px solid #ddd8cc; }
+  .bar.dark { background: #202124; border: 1px solid #3c4043; }
+  .bar .spacer { flex: 1; }
+  .bar .chip { width: 28px; height: 28px; border-radius: 50%; background: #d9d5cb; opacity: .55; }
+  .bar.dark .chip { background: #5f6368; }
+  .bar img { display: block; }
+  .bar .divider { width: 1px; height: 24px; background: #d5d0c5; }
+  .bar.dark .divider { background: #4a4d50; }
+  .sizes { display: flex; align-items: end; gap: 22px; }
+  .size { text-align: center; }
+  .size .actual { padding: 7px 9px; border-radius: 8px; background: #f2efe6; border: 1px solid #e2ddd1; display: inline-flex; align-items: center; justify-content: center; }
+  .size .actual.dark { background: #202724; border-color: #303b36; }
+  .size .zoom { width: 128px; height: 128px; margin-top: 8px; image-rendering: pixelated; border-radius: 0; }
+  .size .zoom.s32 { width: 128px; height: 128px; }
+  .size .zoom.s48 { width: 144px; height: 144px; }
+  .size span { display: block; font-size: 10px; color: #8a837b; font-family: ui-monospace, Consolas, monospace; margin-top: 6px; }
+  .states { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+  .state { text-align: center; padding: 14px 8px 12px; border-radius: 12px; background: #f2efe6; border: 1px solid #e2ddd1; }
+  .state img { width: 64px; height: 64px; display: block; margin: 0 auto 8px; }
+  .state b { display: block; font-size: 11px; color: #57534e; font-weight: 600; }
+  .state small { display: block; font-size: 10px; color: #8a837b; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <h1>KeepActive icon QA</h1>
+  <p class="sub">Production K monogram. Actual toolbar sizes plus pixel-level enlargements.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="title">Chrome toolbar · light</div>
+      <div class="bar light">
+        <div class="chip"></div><div class="chip"></div><div class="spacer"></div>
+        <img src="../icons/icon16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-green-16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-green-dim-16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-red-16.png" width="16" height="16" alt="">
+        <div class="spacer"></div>
+        <div class="chip"></div>
+      </div>
+      <div class="sizes">
+        <div class="size">
+          <div class="actual"><img src="../icons/icon16.png" width="16" height="16" alt=""></div>
+          <img class="zoom" src="../icons/icon16.png" alt="">
+          <span>16 actual + 8×</span>
+        </div>
+        <div class="size">
+          <div class="actual"><img src="../icons/icon32.png" width="32" height="32" alt=""></div>
+          <img class="zoom" src="../icons/icon32.png" alt="">
+          <span>32 actual + 4×</span>
+        </div>
+        <div class="size">
+          <div class="actual"><img src="../icons/icon48.png" width="48" height="48" alt=""></div>
+          <img class="zoom s48" src="../icons/icon48.png" alt="">
+          <span>48 actual + 3×</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Chrome toolbar · dark</div>
+      <div class="bar dark">
+        <div class="chip"></div><div class="chip"></div><div class="spacer"></div>
+        <img src="../icons/icon16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-green-16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-green-dim-16.png" width="16" height="16" alt="">
+        <div class="divider"></div>
+        <img src="../icons/icon-red-16.png" width="16" height="16" alt="">
+        <div class="spacer"></div>
+        <div class="chip"></div>
+      </div>
+      <div class="sizes">
+        <div class="size">
+          <div class="actual dark"><img src="../icons/icon16.png" width="16" height="16" alt=""></div>
+          <img class="zoom" src="../icons/icon16.png" alt="">
+          <span>16 actual + 8×</span>
+        </div>
+        <div class="size">
+          <div class="actual dark"><img src="../icons/icon32.png" width="32" height="32" alt=""></div>
+          <img class="zoom" src="../icons/icon32.png" alt="">
+          <span>32 actual + 4×</span>
+        </div>
+        <div class="size">
+          <div class="actual dark"><img src="../icons/icon48.png" width="48" height="48" alt=""></div>
+          <img class="zoom s48" src="../icons/icon48.png" alt="">
+          <span>48 actual + 3×</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:22px">
+    <div class="title">State system</div>
+    <div class="states">
+      <div class="state"><img src="../icons/icon-green-128.png" alt=""><b>Active</b><small>mint K · forest squircle</small></div>
+      <div class="state"><img src="../icons/icon-green-dim-128.png" alt=""><b>Paused / off-schedule</b><small>desaturated sage</small></div>
+      <div class="state"><img src="../icons/icon-red-128.png" alt=""><b>Disabled</b><small>rose on deep maroon</small></div>
+      <div class="state"><img src="../icons/icon128.png" alt=""><b>Brand / default</b><small>same as active</small></div>
+    </div>
+  </div>
+</body>
+</html>

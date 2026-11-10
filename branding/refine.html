@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive K refinement</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1500px; min-height: 1000px;
+    font-family: "Segoe UI", sans-serif;
+    background: #ece9e0;
+    color: #1c1917;
+    padding: 38px 44px;
+  }
+  h1 { font-size: 24px; letter-spacing: -0.03em; }
+  .sub { color: #6b6560; font-size: 13.5px; margin-top: 5px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 26px; }
+  .card { background: #faf8f2; border: 1px solid #ddd8cc; border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(60,50,40,.05); }
+  .stage { height: 222px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(145deg, #202824, #101613); border: 1px solid #2c3833; }
+  .stage.cream { background: linear-gradient(145deg, #f7f4ec, #e9e4d7); border-color: #dfd9cb; }
+  .icon-large { width: 184px; height: 184px; filter: drop-shadow(0 16px 22px rgba(20,30,25,.22)); }
+  .name { font-size: 14.5px; font-weight: 650; margin-top: 13px; }
+  .desc { font-size: 12px; line-height: 1.45; color: #6b6560; margin-top: 4px; min-height: 34px; }
+  .sizes { display: flex; align-items: end; gap: 14px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e4dfd4; }
+  .size { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .size span { font-size: 9.5px; color: #8a837b; font-family: ui-monospace, Consolas, monospace; }
+  .tc { background: #202724; border-radius: 5px; padding: 3px; }
+  .tc.light { background: #f3f0e7; }
+  .toolbar-wrap { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .bar-card { background: #faf8f2; border: 1px solid #ddd8cc; border-radius: 16px; padding: 18px; }
+  .bar-title { font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #78716c; margin-bottom: 10px; }
+  .bar { height: 46px; border-radius: 10px; display: flex; align-items: center; gap: 14px; padding: 0 16px; }
+  .bar.light { background: #f6f4ee; border: 1px solid #ddd8cc; }
+  .bar.dark { background: #202124; border: 1px solid #3c4043; }
+  .bar .spacer { flex: 1; }
+  .bar .chip { width: 28px; height: 28px; border-radius: 50%; background: #d9d5cb; opacity: .55; }
+  .bar.dark .chip { background: #5f6368; }
+  .bar .kicon { width: 16px; height: 16px; }
+  .bar .divider { width: 1px; height: 24px; background: #d5d0c5; }
+  .bar.dark .divider { background: #4a4d50; }
+</style>
+</head>
+<body>
+  <h1>K mark refinement</h1>
+  <p class="sub">Optical sizing, spark treatment, and real toolbar rendering at 16 px.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="stage">
+        <svg class="icon-large" viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="bg1" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0C3B2F"/><stop offset="1" stop-color="#041A15"/></linearGradient>
+            <linearGradient id="k1" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".52" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/></linearGradient>
+            <radialGradient id="g1" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(210)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#34D399" stop-opacity=".18"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg1)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <circle cx="256" cy="256" r="210" fill="url(#g1)"/>
+          <path d="M196 148 L196 364" fill="none" stroke="url(#k1)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 252 L344 146" fill="none" stroke="url(#k1)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 268 L344 374" fill="none" stroke="url(#k1)" stroke-width="44" stroke-linecap="round"/>
+          <circle cx="368" cy="138" r="14" fill="#A7F3D0"/>
+        </svg>
+      </div>
+      <div class="name">K1 · Floating spark</div>
+      <div class="desc">Larger K, lighter stem, spark detached. Best balance at large and medium sizes.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#k1-16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#k1-32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#k1-48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage">
+        <svg class="icon-large" viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="bg2" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0C3B2F"/><stop offset="1" stop-color="#041A15"/></linearGradient>
+            <linearGradient id="k2" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".52" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/></linearGradient>
+            <radialGradient id="g2" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(210)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#34D399" stop-opacity=".18"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg2)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <circle cx="256" cy="256" r="210" fill="url(#g2)"/>
+          <path d="M202 154 L202 358" fill="none" stroke="url(#k2)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M216 254 L340 150" fill="none" stroke="url(#k2)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M216 266 L340 370" fill="none" stroke="url(#k2)" stroke-width="44" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">K2 · Clean monogram</div>
+      <div class="desc">No spark. The purest silhouette and the most reliable at 16 px.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#k2-16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#k2-32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#k2-48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage">
+        <svg class="icon-large" viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="bg3" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0C3B2F"/><stop offset="1" stop-color="#041A15"/></linearGradient>
+            <linearGradient id="k3" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".52" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/></linearGradient>
+            <radialGradient id="g3" cx="0" cy="0" r="1" gradientTransform="translate(256 250) scale(210)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#34D399" stop-opacity=".18"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg3)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#A7F3D0" stroke-opacity=".16" stroke-width="2"/>
+          <circle cx="256" cy="256" r="210" fill="url(#g3)"/>
+          <path d="M196 148 L196 364" fill="none" stroke="url(#k3)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 252 L352 144" fill="none" stroke="url(#k3)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 268 L344 374" fill="none" stroke="url(#k3)" stroke-width="44" stroke-linecap="round"/>
+          <circle cx="373" cy="139" r="18" fill="#A7F3D0"/>
+          <circle cx="373" cy="139" r="30" fill="#A7F3D0" opacity=".12"/>
+        </svg>
+      </div>
+      <div class="name">K3 · Attached node</div>
+      <div class="desc">The spark merges into the upper arm as a glowing terminal node.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#k3-16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#k3-32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#k3-48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage cream">
+        <svg class="icon-large" viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="bg4" x1="100" y1="50" x2="420" y2="470" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FDFBF5"/><stop offset="1" stop-color="#EEE9DC"/></linearGradient>
+            <linearGradient id="k4" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#10B981"/><stop offset=".52" stop-color="#059669"/><stop offset="1" stop-color="#064E3B"/></linearGradient>
+          </defs>
+          <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#bg4)"/>
+          <rect x="25" y="25" width="462" height="462" rx="115" fill="none" stroke="#064E3B" stroke-opacity=".12" stroke-width="2"/>
+          <path d="M196 148 L196 364" fill="none" stroke="url(#k4)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 252 L344 146" fill="none" stroke="url(#k4)" stroke-width="44" stroke-linecap="round"/>
+          <path d="M212 268 L344 374" fill="none" stroke="url(#k4)" stroke-width="44" stroke-linecap="round"/>
+          <circle cx="368" cy="138" r="14" fill="#059669"/>
+        </svg>
+      </div>
+      <div class="name">K4 · Ivory</div>
+      <div class="desc">The same mark on warm ivory. Cohesive with the UI, but lower toolbar contrast.</div>
+      <div class="sizes">
+        <div class="size"><div class="tc light"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#k4-16"/></svg></div><span>16</span></div>
+        <div class="size"><div class="tc light"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#k4-32"/></svg></div><span>32</span></div>
+        <div class="size"><div class="tc light"><svg width="48" height="48" viewBox="0 0 512 512"><use href="#k4-48"/></svg></div><span>48</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar-wrap">
+    <div class="bar-card">
+      <div class="bar-title">Chrome toolbar · light theme</div>
+      <div class="bar light">
+        <div class="chip"></div>
+        <div class="chip"></div>
+        <div class="spacer"></div>
+        <svg class="kicon" viewBox="0 0 512 512"><use href="#toolbar-k"/></svg>
+        <div class="divider"></div>
+        <svg width="16" height="16" viewBox="0 0 512 512"><use href="#toolbar-k2"/></svg>
+        <div class="divider"></div>
+        <svg width="16" height="16" viewBox="0 0 512 512"><use href="#toolbar-k4"/></svg>
+        <div class="spacer"></div>
+        <div class="chip"></div>
+      </div>
+    </div>
+    <div class="bar-card">
+      <div class="bar-title">Chrome toolbar · dark theme</div>
+      <div class="bar dark">
+        <div class="chip"></div>
+        <div class="chip"></div>
+        <div class="spacer"></div>
+        <svg class="kicon" viewBox="0 0 512 512"><use href="#toolbar-k"/></svg>
+        <div class="divider"></div>
+        <svg width="16" height="16" viewBox="0 0 512 512"><use href="#toolbar-k2"/></svg>
+        <div class="divider"></div>
+        <svg width="16" height="16" viewBox="0 0 512 512"><use href="#toolbar-k4"/></svg>
+        <div class="spacer"></div>
+        <div class="chip"></div>
+      </div>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="smK" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D1FAE5"/><stop offset=".52" stop-color="#34D399"/><stop offset="1" stop-color="#047857"/></linearGradient>
+      <linearGradient id="smK4" x1="190" y1="150" x2="350" y2="380" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#10B981"/><stop offset=".52" stop-color="#059669"/><stop offset="1" stop-color="#064E3B"/></linearGradient>
+      <g id="k1-16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="k1-32"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><circle cx="356" cy="146" r="13" fill="#A7F3D0"/></g>
+      <g id="k1-48"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M196 148 L196 364" stroke="url(#smK)" stroke-width="44" stroke-linecap="round"/><path d="M212 252 L344 146" stroke="url(#smK)" stroke-width="44" stroke-linecap="round"/><path d="M212 268 L344 374" stroke="url(#smK)" stroke-width="44" stroke-linecap="round"/><circle cx="368" cy="138" r="14" fill="#A7F3D0"/></g>
+      <g id="k2-16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="k2-32"><use href="#k2-16"/></g><g id="k2-48"><use href="#k2-16"/></g>
+      <g id="k3-16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="k3-32"><use href="#k3-16"/></g><g id="k3-48"><use href="#k3-16"/></g>
+      <g id="k4-16"><rect x="24" y="24" width="464" height="464" rx="116" fill="#F8F5ED"/><path d="M202 154 L202 358" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="k4-32"><use href="#k4-16"/></g><g id="k4-48"><use href="#k4-16"/></g>
+      <g id="toolbar-k"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="toolbar-k2"><rect x="24" y="24" width="464" height="464" rx="116" fill="#06261F"/><path d="M202 154 L202 358" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK)" stroke-width="48" stroke-linecap="round"/></g>
+      <g id="toolbar-k4"><rect x="24" y="24" width="464" height="464" rx="116" fill="#F8F5ED"/><path d="M202 154 L202 358" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/><path d="M216 254 L340 150" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/><path d="M216 266 L340 370" stroke="url(#smK4)" stroke-width="48" stroke-linecap="round"/></g>
+    </defs>
+  </svg>
+</body>
+</html>

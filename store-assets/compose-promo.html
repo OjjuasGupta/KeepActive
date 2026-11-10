@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepActive promo tile</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 440px; height: 280px; overflow: hidden; }
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    background: #f6f4ee;
+    color: #1c1917;
+    position: relative;
+    padding: 30px 32px;
+  }
+  .glow {
+    position: absolute; width: 340px; height: 340px; right: -120px; top: -150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16,185,129,0.22), rgba(16,185,129,0) 68%);
+  }
+  .mark {
+    position: relative; z-index: 1;
+    width: 58px; height: 58px;
+    padding: 7px;
+    border-radius: 15px;
+    background: #ffffff;
+    border: 1px solid #e7e2d6;
+    box-shadow: 0 8px 20px rgba(41,37,36,0.12);
+  }
+  .mark img { width: 100%; height: 100%; display: block; }
+  h1 {
+    position: relative; z-index: 1;
+    margin-top: 16px;
+    font-size: 34px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-weight: 750;
+  }
+  h1 span { color: #059669; }
+  p {
+    position: relative; z-index: 1;
+    margin-top: 11px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #57534e;
+    max-width: 340px;
+  }
+  .meta {
+    position: absolute; left: 32px; bottom: 24px;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #047857;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="mark"><img src="../icons/icon48.png" alt=""></div>
+  <h1>Keep<span>Active</span></h1>
+  <p>Display keep-awake and small activity events for Microsoft Teams on the web.</p>
+  <div class="meta"><span class="dot"></span>LOCAL-ONLY · ZERO TELEMETRY</div>
+</body>
+</html>

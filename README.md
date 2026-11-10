@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KeepActive
 
 A local-only Manifest V3 Chrome extension that keeps your display awake and
@@ -174,3 +175,6 @@ submitting.
 ## License
 
 MIT License. Local developer utility.
+=======
+# StayActive
+>>>>>>> 0f99a5ac7a0308e06660457a90fa175c42c0973a

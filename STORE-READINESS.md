@@ -28,8 +28,8 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 84.4 KB | `C8875A97C7F039018CB5B3B3F8C7ADC0696BD4C174099E9E276D94D658BBA21D` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 101.3 KB | `A33047D30D651358685095EBC3AC983F4E32764CD872C49D0909BE5AE2C556BD` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 84.4 KB | `7AF5DAFB236497BB47846E66A6F315CAC9F858F422F3C3E8691C50A061D2CDC8` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 101.3 KB | `C5AE5E049F0B1D5A5F9F68D78888AFE9959A6F0600A1F4B48B8253581AC19AFD` |
 
 Unpacked staging folders:
 
@@ -205,13 +205,13 @@ The screenshots contain no native-helper UI, so they match the browser-only stor
 
 ## 7. Privacy policy hosting
 
-The Chrome Web Store requires a public HTTPS privacy-policy URL. `tools/build.ps1` copies `privacy.html` to `docs/privacy.html` on every build, so the hosted policy always matches the packaged one. `docs/index.html` is a minimal homepage/support page; `docs/.nojekyll` disables Jekyll processing.
+The Chrome Web Store requires a public HTTPS privacy-policy URL. `tools/build.ps1` copies `privacy.html` to `docs/privacy.html` on every build, so the hosted policy always matches the packaged one. `docs/index.html` is the landing/support page (static HTML/CSS plus a self-hosted Three.js bundle built from `site/` with `npm run build`; no external requests); `docs/.nojekyll` disables Jekyll processing.
 
 Planned URLs (GitHub Pages lowercases the account name):
 
 - Privacy policy: `https://ojjuasgupta.github.io/StayActive/privacy.html`
 - Homepage / support: `https://ojjuasgupta.github.io/StayActive/`
-- Contact: `ojjuasgupta12345@gmail.com` (named in the policy's Contact section)
+- Contact: `filmfrenzy777@gmail.com` (named in the policy's Contact section)
 
 To publish:
 
@@ -309,7 +309,7 @@ Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/
 
 ### Pending developer console
 
-- [ ] Developer account registered (one-time fee paid), 2-Step Verification on, contact email `ojjuasgupta12345@gmail.com` verified.
+- [ ] Developer account registered (one-time fee paid), 2-Step Verification on, contact email `filmfrenzy777@gmail.com` verified.
 - [ ] Create the listing with section 3 copy, category, language, the three screenshots and promo tile.
 - [ ] Privacy URL, homepage and support URL from section 7.
 - [ ] Permission justifications (section 4) and privacy practices questionnaire (section 5); certify data-use disclosures.

@@ -10,7 +10,8 @@ All notable changes to KeepActive are recorded here. Versions match `manifest.js
 - Per-site toggles for `teams.microsoft.com` and `teams.cloud.microsoft`.
 - Real keyboard, mouse, wheel and touch input in Teams tabs triggers Smart Pause immediately.
 - Diagnostic Console entry for every activity cycle.
-- Privacy policy contact section; public copy published from `docs/` via GitHub Pages.
+- Privacy policy contact section (`filmfrenzy777@gmail.com`); public copy published from `docs/` via GitHub Pages.
+- Landing page in `docs/` with a self-hosted 3D scene (`site/`), reduced-motion fallback and social preview image.
 
 ### Changed
 - New Crimson & Cream "Presence" logo; toolbar badge shows active, paused and off states.

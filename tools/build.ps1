@@ -227,6 +227,12 @@ Assert-NoRemoteAssets -StageRoot $fullStage -Variant full
 New-Package -Variant 'store' -Version $version -StageRoot $storeStage
 New-Package -Variant 'full' -Version $version -StageRoot $fullStage
 
+# GitHub Pages serves docs/; keep the public policy identical to the packaged one.
+$docsRoot = Join-Path $Root 'docs'
+if (-not (Test-Path $docsRoot)) { New-Item -ItemType Directory -Path $docsRoot -Force | Out-Null }
+Copy-Item (Join-Path $Root 'privacy.html') (Join-Path $docsRoot 'privacy.html') -Force
+Write-Step 'Synced docs/privacy.html for GitHub Pages.'
+
 Write-Step 'Validating JavaScript syntax with node --check...'
 $node = Get-Command node -ErrorAction SilentlyContinue
 if ($node) {

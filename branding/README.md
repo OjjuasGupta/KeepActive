@@ -61,5 +61,5 @@ changes. They name the states, not the colours.
 3. Write the returned PNG data URLs to `../icons/`.
 4. Rebuild the packages with `..\tools\build.ps1`.
 
-`../store-assets/patch-logo.html` replaces the logo inside the existing store
-screenshots without recapturing them.
+After rebuilding, `../tools/capture-store-assets.mjs` recaptures the store
+screenshots and promo tile from the packaged build (see its header for setup).

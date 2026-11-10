@@ -26,6 +26,9 @@
     idleThreshold: document.getElementById('idleThreshold'),
     maxSession: document.getElementById('maxSession'),
     debugOverlay: document.getElementById('debugOverlay'),
+    neutralClicks: document.getElementById('neutralClicks'),
+    siteTeamsMicrosoft: document.getElementById('siteTeamsMicrosoft'),
+    siteTeamsCloud: document.getElementById('siteTeamsCloud'),
     logView: document.getElementById('logView'),
     refreshLogs: document.getElementById('refreshLogs'),
     exportLogs: document.getElementById('exportLogs'),
@@ -47,6 +50,10 @@
     },
     smartPause: { enabled: true, resumeAfterIdleMin: 2, idleDetectionSeconds: 15 },
     safety: { maxSessionHours: 0 },
+    webActivity: {
+      neutralClicks: true,
+      sites: { 'teams.microsoft.com': true, 'teams.cloud.microsoft': true }
+    },
     debugOverlay: false
   };
 
@@ -139,6 +146,10 @@
 
     if (elements.maxSession) elements.maxSession.value = state.safety?.maxSessionHours ?? 0;
     if (elements.debugOverlay) elements.debugOverlay.checked = !!state.debugOverlay;
+    const web = state.webActivity || {};
+    if (elements.neutralClicks) elements.neutralClicks.checked = web.neutralClicks !== false;
+    if (elements.siteTeamsMicrosoft) elements.siteTeamsMicrosoft.checked = web.sites?.['teams.microsoft.com'] !== false;
+    if (elements.siteTeamsCloud) elements.siteTeamsCloud.checked = web.sites?.['teams.cloud.microsoft'] !== false;
 
     const supported = nativeSupported();
     if (elements.nativeHelperCard) elements.nativeHelperCard.hidden = !supported;
@@ -182,6 +193,13 @@
       },
       safety: {
         maxSessionHours: parseInt(elements.maxSession?.value || '0', 10)
+      },
+      webActivity: {
+        neutralClicks: !!elements.neutralClicks?.checked,
+        sites: {
+          'teams.microsoft.com': !!elements.siteTeamsMicrosoft?.checked,
+          'teams.cloud.microsoft': !!elements.siteTeamsCloud?.checked
+        }
       },
       debugOverlay: !!elements.debugOverlay?.checked
     };
@@ -250,7 +268,10 @@
     const toggleInputs = [
       elements.schedEnabled,
       elements.smartPauseEnabled,
-      elements.debugOverlay
+      elements.debugOverlay,
+      elements.neutralClicks,
+      elements.siteTeamsMicrosoft,
+      elements.siteTeamsCloud
     ];
 
     toggleInputs.forEach(cb => {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # KeepActive
 
 A local-only Manifest V3 Chrome extension that keeps your display awake and
@@ -23,13 +22,21 @@ KeepActive ships in two variants:
 
 - **Display keep-awake** via `chrome.power.requestKeepAwake("display")` while
   Chrome is running and KeepActive is effectively ON.
-- **Teams Web activity** in top-level Teams tabs: randomized pointer movement
-  and occasional harmless Shift key pulses. No clicks, no typing, no page
-  control interaction.
+- **Teams Web activity** in top-level Teams tabs every 60–150 s (randomized):
+  pointer movement on the element under a random point, occasional harmless
+  Shift key pulses, `focus`/`visibilitychange` pings, and an occasional click
+  on the empty page background (`<body>` itself, so no button, link, input or
+  send/delete control can receive it; skipped while a text field is focused).
+  The background click can be turned off in the Control Deck. Each cycle is
+  written to the Diagnostic Console with a timestamp so you can check whether
+  Teams reacts to these `isTrusted=false` events.
+- **Allowed sites**: enable or disable activity per Teams origin
+  (`teams.microsoft.com`, `teams.cloud.microsoft`).
 - **Work schedule** with normal, overnight, and multi-day gaps. The next
   transition is stored in `chrome.alarms`, so it survives service-worker
   restarts.
-- **Smart Pause**: uses the OS idle signal. Pauses while you are active,
+- **Smart Pause**: uses the OS idle signal plus real (`isTrusted`) key, mouse
+  button, wheel and touch input inside Teams tabs. Pauses while you are active,
   resumes only after your configured away period, and treats a locked screen
   as away.
 - **Accurate session clock**: only effective ON time accumulates. Paused and
@@ -74,7 +81,8 @@ permission. If the extension ID changes, rerun the installer so
 
 ## Control Deck
 
-- **Teams Web intervals**: minimum and maximum seconds between activity events.
+- **Teams Web intervals**: minimum and maximum seconds between activity events,
+  the neutral background click toggle, and allowed Teams sites.
 - **Automated shifts**: start/end time and active weekdays. Overnight shifts
   such as 22:00-06:00 are supported.
 - **Smart Pause**: idle detection threshold and resume delay.
@@ -147,6 +155,40 @@ py -3 tools/test-native.py
 py -3 native\host.py --selftest
 ```
 
+### 60-minute acceptance test
+
+Run each test with the laptop untouched for 60 minutes. Enable
+**Diagnostics → Display diagnostic activity badge** first if you want to watch
+events in the Teams tab.
+
+1. **Display stays awake** — Store or full build, master switch ON, only
+   *Display Keep-Awake* enabled. Set the OS screen-off/sleep timer to 5 min.
+   Pass: the display stays on and the laptop does not sleep. IT-enforced lock
+   policy can still lock the screen; that is expected.
+2. **Teams Web status** — Sign in at `https://teams.microsoft.com` in a normal
+   (not minimized) Chrome window. Enable *Teams Web Activity*. Watch your status
+   from a second account or phone. Pass: status stays **Available** for 60 min,
+   **or** the Diagnostic Console shows `Teams Web events dispatched` entries
+   every 60–150 s. Record which one you observed; Teams may ignore synthetic
+   (`isTrusted=false`) events.
+3. **Teams Desktop with helper** — Full build only, helper installed and
+   *Native Desktop Helper* enabled, Teams Desktop running. Pass: status stays
+   **Available** for 60 min and the log shows `Native micro-activity executed`.
+4. **Controls** — `Alt+Shift+S` toggles ON/OFF; the popup pause button holds
+   activity; typing in Teams pauses activity (Smart Pause) and it resumes after
+   the configured idle minutes; an enabled schedule turns activity off outside
+   working hours. No errors appear on `chrome://extensions`.
+
+## Honest limits
+
+- IT Group Policy, Intune/MDM and OS lock settings can still sleep or lock the
+  device. An extension cannot override them.
+- KeepActive affects idle detection only. It does not defeat server-side or
+  endpoint monitoring (Teams analytics, EDR, productivity tools).
+- Teams presence is controlled by Microsoft and may ignore synthetic events.
+- Activity simulation may violate your employer's policy. Use is your own
+  responsibility.
+
 ## Permissions
 
 | Permission | Why |
@@ -175,6 +217,3 @@ submitting.
 ## License
 
 MIT License. Local developer utility.
-=======
-# StayActive
->>>>>>> 0f99a5ac7a0308e06660457a90fa175c42c0973a

@@ -52,7 +52,6 @@
       ],
       "js": [
         "lib/random.js",
-        "lib/logger.js",
         "lib/storage.js",
         "content/teams.js"
       ],

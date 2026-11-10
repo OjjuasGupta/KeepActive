@@ -1,8 +1,26 @@
 # KeepActive 1.1.0 — Chrome Web Store Readiness
 
 Last verified: 10 November 2026  
-Test browser: Chrome 157.0.8103.50 on Windows  
+Test browsers: Chrome 157.0.8103.50 on Windows (original pass); Chrome for Testing 157.0.8103.38 headless on Linux (PRD-completion pass)  
 Status: **Code, UI, packaging, and store assets are ready.** Three external actions remain: host the privacy policy at a public HTTPS URL, complete the listing in the Chrome Web Store developer console, and submit from your developer account. Nothing has been submitted.
+
+### PRD completion pass (10 November 2026)
+
+Gaps closed against `PRD_StayActive_Extension.md`:
+
+| PRD item | Change |
+|---|---|
+| FR2 neutral click | Occasional `pointerdown/mousedown/pointerup/mouseup/click` targeted at `<body>` itself (never a control); skipped while a text field is focused. On by default, toggle in Control Deck. |
+| FR2 focus / visibility | Occasional `focus` + `visibilitychange` pings while the tab is visible. |
+| FR2 mousemove on an element | Pointer events now target the element under the random point. |
+| FR2 debug log | Every activity cycle is written to the Diagnostic Console (timestamp, event list, host). |
+| FR5 real input | Real (`isTrusted`) keydown, mouse button, wheel, and touch input in Teams tabs triggers Smart Pause immediately. |
+| FR7 allowed sites | Per-origin toggles for `teams.microsoft.com` and `teams.cloud.microsoft`. |
+| README | 60-minute acceptance test plan and honest limits added; merge conflict resolved. |
+| Logging race | Content script now forwards log entries to the service worker (single writer), fixing lost diagnostic entries. |
+| Brand | New Emerald & Gold mark across icons, brand sheet, lockups, and store images. |
+
+Intentional deviations from the PRD: `scripting` is not requested (unused), and `nativeMessaging` is absent from the store build instead of optional.
 
 ---
 
@@ -10,8 +28,8 @@ Status: **Code, UI, packaging, and store assets are ready.** Three external acti
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 143.0 KB | `BB907F71F8F8C61571D10D76A0771FEED61DA9BA667644052E2BA1B1164CE503` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 159.0 KB | `DA564389EB8D92FEC12FD735652197A2728D75DE232C18CBCF0DA0BE92F307A9` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 160.7 KB | `7FB11F84FF104D8C0EA7ADF2E3D163372E3F5BB4F5F63C6D329BC40572133721` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 177.7 KB | `853B9B72790785BC1681EB793F887D69F07D0E6AEF501C97AC9557196F1604CA` |
 
 Unpacked staging folders:
 
@@ -28,10 +46,11 @@ The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`
 
 | Check | Result |
 |---|---|
-| `node tools/test-storage.js` | **15/15 pass** — schedule math, overnight shifts, normalization, effective-state logic |
+| `node tools/test-storage.js` | **18/18 pass** — schedule math, overnight shifts, normalization, effective-state logic, Teams Web options |
 | `py -3 tools/test-native.py` | **8/8 pass** — native framing, `READY`, `PING`, `CONFIG`, unknown command, `STOP`, clean exit |
 | `powershell -File tools/build.ps1` | Pass — MV3 manifests, version match, icon references, content-script paths, no remote URLs, ZIP layout, `node --check` on 8 JS files |
 | Store CDP smoke test | **25/25 pass**, repeated 3 times for stability |
+| Teams Web CDP test (stubbed `teams.microsoft.com` origin) | **15/15 pass** — event types, body-only clicks, hidden button never clicked, diagnostic log entries, allowed-site toggle, click toggle, Smart Pause on real keystroke, stop on master OFF |
 | Full CDP smoke test | **5/5 pass** |
 | Native helper live test | **7/7 pass** — enable, connect, `NATIVE_TEST`, connected state, disable, disconnect, no page errors |
 
@@ -86,7 +105,7 @@ KeepActive is a local-only Chrome extension for long passive sessions: presentat
 WHAT IT DOES
 
 • Display keep-awake — asks Chrome to keep the display on while KeepActive is active and Chrome is running.
-• Teams Web activity — sends small, randomized pointer-move and Shift-key events to top-level Microsoft Teams Web tabs. It never clicks, types text, reads messages, or changes Teams content.
+• Teams Web activity — sends small, randomized pointer-move, Shift-key, and focus events, plus an occasional click on the empty page background, to top-level Microsoft Teams Web tabs. It never clicks buttons, links, or inputs, never types text, never reads messages, and never changes Teams content. Background clicks and each Teams site can be turned off.
 • Automated shifts — engages only during the workdays and hours you choose, including overnight schedules.
 • Smart Pause — uses the operating system idle signal to pause while you are actively using the computer, then resume after your chosen idle delay.
 • Manual pause/resume, an Alt+Shift+S hotkey, a session safety limit, and local diagnostics.
@@ -151,7 +170,7 @@ Recommended answers:
 | Personal communications? | No — the extension does not read Teams messages |
 | Location? | No |
 | Web history? | No — no page URLs or browsing history are stored or transmitted |
-| User activity? | No — OS idle state is read locally; no keystrokes, clicks, or browsing activity are collected |
+| User activity? | No — OS idle state is read locally, and the Teams content script only notes *that* a real key/mouse press happened (to trigger Smart Pause); which key, where, or what was typed is never read, stored, or transmitted |
 | Website content? | No |
 | Is data sold or shared with third parties? | No |
 | Is data used for creditworthiness or lending? | No |
@@ -175,6 +194,8 @@ All screenshots are exact **1280×800 PNG** files captured from the packaged sto
 Optional small promo tile (440×280, exact):
 
 - `store-assets/keepactive-promo-440x280.png`
+
+The four store images were updated in place to the new Emerald & Gold logo (only the logo pixels changed; `store-assets/patch-logo.html` did the replacement) and saved as 24-bit PNG without alpha. Screenshot 3 still shows the pre-1.1 Teams Web wording ("It never clicks or types text"); recapture the setup guide on Windows before submission, or omit that screenshot.
 
 The screenshots contain no native-helper UI, so they match the browser-only store package.
 

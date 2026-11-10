@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: Layar Tetap Menyala & Tetap Aktif",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "Jaga layar tetap menyala dan kirim aktivitas ringan ke Microsoft Teams versi web. Jadwal kerja, Smart Pause, tanpa pelacakan.",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "Aktifkan/nonaktifkan KeepActive",
+    "description": "Keyboard shortcut description."
+  }
+}

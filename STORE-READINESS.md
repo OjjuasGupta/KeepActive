@@ -2,7 +2,7 @@
 
 Last verified: 10 November 2026  
 Test browsers: Chrome 157.0.8103.50 on Windows (original pass); Chrome for Testing 157.0.8103.38 headless on Linux (PRD-completion pass)  
-Status: **Code, UI, packaging, store assets and policy pages are ready.** Remaining: publish `docs/` on GitHub Pages (the repository is private; see section 7), complete the listing in the Chrome Web Store developer console, and submit. Nothing has been submitted. See section 11 for the final checklist.
+Status: **Code, UI, packaging, store assets and policy pages are ready.** Remaining: enable GitHub Pages for `docs/` (see section 7), complete the listing in the Chrome Web Store developer console, and submit. Nothing has been submitted. See section 11 for the final checklist.
 
 ### PRD completion pass (10 November 2026)
 
@@ -28,13 +28,15 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 85.8 KB | `ABDE44395A015F05759CBD41577DB1BFD92AD292CFA316DACAB0945FFFACE60C` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 102.8 KB | `B49A646102C07E98F1009BEC4E8EF89C02E1B716A64A3346BD41FC3F1B443E41` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 92.1 KB | `AC0C4208FF630BE4687184FEA2A8E5B87547C94150C331935E542680A2960DF2` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 109.1 KB | `FD5747CB44480B122681297157DFDE5971170C7C6D9BE157028BC968941AE7A3` |
 
 Unpacked staging folders:
 
-- `dist/keepactive-store-1.1.0/` — 32 files
-- `dist/keepactive-full-1.1.0/` — 38 files
+- `dist/keepactive-store-1.1.0/` — 47 files (includes 15 `_locales`)
+- `dist/keepactive-full-1.1.0/` — 53 files
+
+Upload the ZIP file itself. Do not use GitHub's **Code → Download ZIP**: that archive nests everything under a top-level folder (no root `manifest.json`) and includes source, tools and the native helper.
 
 The store ZIP contains no `native/`, `tools/`, `README.md`, `manifest.full.json`, icon generators, or non-PNG icon assets. The full ZIP declares `nativeMessaging` and includes the optional desktop helper; it is for local/developer installation only.
 
@@ -139,6 +141,10 @@ GOOD TO KNOW
 Microsoft and Microsoft Teams are trademarks of Microsoft Corporation. KeepActive is not affiliated with or endorsed by Microsoft.
 ```
 
+### Localized listings
+
+The store name and summary are localized through `_locales/<locale>/messages.json` (`extName`, `extDescription`, `cmdToggle`), with `en` as `default_locale`. Locales: en, de, es, fr, it, pt_BR, nl, pl, ja, ko, zh_CN, ru, hi, id, tr. The developer console then lists each language under **Store listing → language**; paste the matching `store-listing/<locale>.txt` into that language's **Detailed description**. Screenshots can stay English (they fall back to the default language). The extension's own UI (popup, Control Deck, welcome guide) is still English only.
+
 ### Single-purpose statement
 
 ```text
@@ -196,7 +202,7 @@ Recommended answers:
 | Is data sold or shared with third parties? | No |
 | Is data used for creditworthiness or lending? | No |
 | Does the extension use remote code? | No |
-| Is there a privacy policy URL? | Yes — `https://ojjuasgupta.github.io/StayActive/privacy.html` once published (section 7) |
+| Is there a privacy policy URL? | Yes — `https://ojjuasgupta.github.io/KeepActive/privacy.html` once published (section 7) |
 
 The extension does not transmit any data off the device.
 
@@ -230,14 +236,14 @@ The Chrome Web Store requires a public HTTPS privacy-policy URL. `tools/build.ps
 
 Planned URLs (GitHub Pages lowercases the account name):
 
-- Privacy policy: `https://ojjuasgupta.github.io/StayActive/privacy.html`
-- Homepage / support: `https://ojjuasgupta.github.io/StayActive/`
+- Privacy policy: `https://ojjuasgupta.github.io/KeepActive/privacy.html`
+- Homepage / support: `https://ojjuasgupta.github.io/KeepActive/`
 - Contact: `filmfrenzy777@gmail.com` (named in the policy's Contact section)
 
 To publish:
 
 1. Merge this branch into `main` (Pages serves from a branch on GitHub).
-2. **The repository is currently private.** GitHub Free only publishes Pages from public repositories; private-repo Pages require GitHub Pro, Team or Enterprise, and the published site is still public. Either make the repository public, upgrade, or move `docs/` into a separate public repository.
+2. The repository `OjjuasGupta/KeepActive` is public, so GitHub Free can serve Pages from it. Pages was not yet enabled as of 10 November 2026 (the privacy URL returned 404).
 3. Open **Settings → Pages**, choose **Deploy from a branch**, branch `main`, folder `/docs`, and save.
 4. After the deploy finishes, open the privacy URL in a private window without signing in.
 5. Paste it into the listing's **Privacy policy URL** field, and the homepage into **Homepage URL** / **Support URL**.
@@ -322,9 +328,9 @@ Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/
 
 ### Pending you (outside this repository)
 
-- [ ] Merge PR #1 into `main`.
-- [ ] Make Pages publishable (repo is private, see section 7) and enable **Settings → Pages → main /docs**.
-- [ ] Confirm `https://ojjuasgupta.github.io/StayActive/privacy.html` loads signed out.
+- [ ] Merge the localization PR into `main`.
+- [ ] Enable **Settings → Pages → Deploy from a branch → main /docs** (repo is public; see section 7).
+- [ ] Confirm `https://ojjuasgupta.github.io/KeepActive/privacy.html` loads signed out.
 - [ ] Recommended: run the manual Teams presence protocol in section 8 with two accounts. Automated tests use a stubbed Teams page and can't confirm Microsoft's real presence behavior.
 - [ ] Recommended: one manual pass on Windows/macOS Chrome (popup, toolbar icon states, Alt+Shift+S).
 

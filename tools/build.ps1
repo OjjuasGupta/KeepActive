@@ -46,23 +46,30 @@ function Copy-StoreFiles {
     $files = @(
         'manifest.json',
         'background.js',
-        'content\teams.js',
-        'lib\random.js',
-        'lib\logger.js',
-        'lib\storage.js',
-        'lib\rating.js',
-        'popup\popup.html',
-        'popup\popup.css',
-        'popup\popup.js',
-        'options\options.html',
-        'options\options.css',
-        'options\options.js',
+        'content/teams.js',
+        'lib/random.js',
+        'lib/logger.js',
+        'lib/storage.js',
+        'lib/rating.js',
+        'popup/popup.html',
+        'popup/popup.css',
+        'popup/popup.js',
+        'options/options.html',
+        'options/options.css',
+        'options/options.js',
         'welcome.html',
         'welcome.js',
         'privacy.html'
     )
 
     foreach ($file in $files) { Copy-Relative $file $DestinationRoot }
+
+    # manifest.json uses __MSG_*__ strings; every locale needs its messages.json.
+    $locales = Get-ChildItem (Join-Path $Root '_locales') -Directory
+    if (-not ($locales | Where-Object { $_.Name -eq 'en' })) { throw 'Missing default locale _locales/en.' }
+    foreach ($locale in $locales) {
+        Copy-Relative (Join-Path (Join-Path '_locales' $locale.Name) 'messages.json') $DestinationRoot
+    }
 
     $iconDestination = Join-Path $DestinationRoot 'icons'
     if (-not (Test-Path $iconDestination)) { New-Item -ItemType Directory -Path $iconDestination -Force | Out-Null }
@@ -102,7 +109,7 @@ function Assert-Manifest {
     if (-not (Test-Path (Join-Path $base $manifest.background.service_worker))) {
         throw "Missing service worker: $($manifest.background.service_worker)"
     }
-    foreach ($page in @('popup\popup.html', 'options\options.html', 'welcome.html', 'privacy.html')) {
+    foreach ($page in @('popup/popup.html', 'options/options.html', 'welcome.html', 'privacy.html')) {
         if (-not (Test-Path (Join-Path $base $page))) { throw "Missing page: $page" }
     }
 
@@ -217,11 +224,11 @@ Copy-Item -Path (Join-Path $storeStage '*') -Destination $fullStage -Recurse -Fo
 Copy-Relative 'manifest.full.json' $fullStage
 Move-Item -Path (Join-Path $fullStage 'manifest.full.json') -Destination (Join-Path $fullStage 'manifest.json') -Force
 Copy-Relative 'README.md' $fullStage
-Copy-Relative 'native\host.py' $fullStage
-Copy-Relative 'native\host.json.template' $fullStage
-Copy-Relative 'native\install.ps1' $fullStage
-Copy-Relative 'native\install.sh' $fullStage
-Copy-Relative 'native\README.md' $fullStage
+Copy-Relative 'native/host.py' $fullStage
+Copy-Relative 'native/host.json.template' $fullStage
+Copy-Relative 'native/install.ps1' $fullStage
+Copy-Relative 'native/install.sh' $fullStage
+Copy-Relative 'native/README.md' $fullStage
 
 $null = Assert-Manifest -ManifestPath (Join-Path $fullStage 'manifest.json') -Variant full -ExpectedVersion $version
 Assert-NoRemoteAssets -StageRoot $fullStage -Variant full

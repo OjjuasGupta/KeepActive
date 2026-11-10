@@ -1,0 +1,35 @@
+Evite que a tela entre em suspensão no meio de uma apresentação, de um painel ou de um download demorado. O KeepActive mantém a tela ligada enquanto o Chrome estiver em execução e envia uma atividade suave, no ritmo de uma pessoa, ao Microsoft Teams na web, somente no horário que você definir. Assim que você mexe no teclado ou no mouse, ele sai de cena.
+
+POR QUE AS PESSOAS USAM
+
+• Apresentações, painéis e telas de monitoramento que precisam ficar ligadas.
+• Downloads, renderizações, uploads e sessões de leitura longos.
+• Evitar que uma guia web do Teams fique inativa durante longas sessões de trabalho passivo.
+
+O QUE ELE FAZ
+
+• Manter a tela ligada: pede ao Chrome que mantenha a tela acesa enquanto o KeepActive estiver ativo e o Chrome estiver em execução.
+• Atividade no Teams na web: pequenos movimentos aleatórios do ponteiro, toques na tecla Shift e sinais de foco a cada 60–150 segundos por padrão, além de um clique opcional no fundo vazio da página. Ele nunca clica em botões, links ou campos de entrada, nunca digita texto, nunca lê mensagens e nunca altera o conteúdo do Teams. Os cliques no fundo e cada site do Teams podem ser desativados.
+• Horários de trabalho: funciona somente nos dias e horários que você escolher, inclusive em turnos noturnos.
+• Smart Pause: usa o sinal de inatividade do computador para pausar enquanto você trabalha e retoma após o tempo de inatividade que você definiu.
+• Controle com um clique na barra de ferramentas, atalho Alt+Shift+S, limite de segurança por sessão e diagnóstico local.
+
+COMO USAR
+
+1. Fixe o KeepActive na barra de ferramentas e ative-o.
+2. Mantenha uma guia web do Microsoft Teams aberta (uma guia normal funciona melhor).
+3. Opcional: defina um horário de trabalho e o atraso do Smart Pause no Control Deck.
+
+PRIVACIDADE EM PRIMEIRO LUGAR
+
+• Sem contas, análises, anúncios, rastreamento ou solicitações a terceiros.
+• As configurações e o diagnóstico ficam no perfil do seu navegador (chrome.storage.local).
+• Sem aplicativo nativo nem instalador neste pacote.
+
+BOM SABER
+
+• O KeepActive não garante nenhum status de presença no Microsoft Teams. A presença é controlada pela Microsoft.
+• Ele não contorna o bloqueio de tela, Intune, Política de Grupo, MDM, EDR nem outros controles da empresa.
+• Requer o Chrome 116 ou mais recente. O Chrome precisa estar em execução para manter a tela ligada.
+
+Microsoft e Microsoft Teams são marcas registradas da Microsoft Corporation. O KeepActive não é afiliado à Microsoft nem endossado por ela.

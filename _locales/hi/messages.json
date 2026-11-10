@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: स्क्रीन ऑन रखें और एक्टिव रहें",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "स्क्रीन को स्लीप होने से रोकें और वेब पर Microsoft Teams को हल्की एक्टिविटी भेजें। काम का शेड्यूल, Smart Pause, कोई ट्रैकिंग नहीं।",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "KeepActive चालू/बंद करें",
+    "description": "Keyboard shortcut description."
+  }
+}

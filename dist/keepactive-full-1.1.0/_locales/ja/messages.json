@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "KeepActive: 画面をスリープさせない・アクティブ状態を維持",
+    "description": "Store and toolbar name. Keep the KeepActive brand."
+  },
+  "extDescription": {
+    "message": "画面のスリープを防ぎ、Web版 Microsoft Teams に控えめなアクティビティを送信。勤務スケジュール、Smart Pause、トラッキングなし。",
+    "description": "Store summary, max 132 characters."
+  },
+  "cmdToggle": {
+    "message": "KeepActive のオン/オフ",
+    "description": "Keyboard shortcut description."
+  }
+}

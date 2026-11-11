@@ -28,13 +28,13 @@ Intentional deviations from the PRD: `scripting` is not requested (unused), and 
 
 | Artifact | Path | Size | SHA256 |
 |---|---|---|---|
-| **Store package (submit this one)** | `dist/keepactive-store-1.1.0.zip` | 92.1 KB | `AC0C4208FF630BE4687184FEA2A8E5B87547C94150C331935E542680A2960DF2` |
-| **Full package (do not submit)** | `dist/keepactive-full-1.1.0.zip` | 109.1 KB | `FD5747CB44480B122681297157DFDE5971170C7C6D9BE157028BC968941AE7A3` |
+| **Store package (submit this one)** | `dist/keepactive-store-1.1.1.zip` | 92.1 KB | `AC0C4208FF630BE4687184FEA2A8E5B87547C94150C331935E542680A2960DF2` |
+| **Full package (do not submit)** | `dist/keepactive-full-1.1.1.zip` | 109.1 KB | `FD5747CB44480B122681297157DFDE5971170C7C6D9BE157028BC968941AE7A3` |
 
 Unpacked staging folders:
 
-- `dist/keepactive-store-1.1.0/` — 47 files (includes 15 `_locales`)
-- `dist/keepactive-full-1.1.0/` — 53 files
+- `dist/keepactive-store-1.1.1/` — 47 files (includes 15 `_locales`)
+- `dist/keepactive-full-1.1.1/` — 53 files
 
 Upload the ZIP file itself. Do not use GitHub's **Code → Download ZIP**: that archive nests everything under a top-level folder (no root `manifest.json`) and includes source, tools and the native helper.
 
@@ -222,7 +222,7 @@ Optional small promo tile (440×280, exact):
 
 - `store-assets/keepactive-promo-440x280.png`
 
-The screenshots and promo tile were recaptured on 10 November 2026 from a fresh unpacked install of `dist/keepactive-store-1.1.0.zip` with `tools/capture-store-assets.mjs` (headless Chrome, en-GB locale so the 24h time fields render as 08:00/20:00, Roboto). They show the current Presence logo and the current setup-guide wording (optional click on the empty page background; never buttons, links or inputs). All are 24-bit PNG without alpha, square corners, full bleed.
+The screenshots and promo tile were recaptured on 10 November 2026 from a fresh unpacked install of `dist/keepactive-store-1.1.1.zip` with `tools/capture-store-assets.mjs` (headless Chrome, en-GB locale so the 24h time fields render as 08:00/20:00, Roboto). They show the current Presence logo and the current setup-guide wording (optional click on the empty page background; never buttons, links or inputs). All are 24-bit PNG without alpha, square corners, full bleed.
 
 The 128×128 icons use 96×96 artwork with 16 px transparent padding, per Chrome Web Store image guidance; only the soft shadow extends 1 px into the top padding.
 
@@ -293,7 +293,7 @@ native/install.sh --extension-id <extension-id>
 
 The helper requires Python 3.8+. On macOS it also requires Accessibility permission. If the extension ID changes, rerun the installer.
 
-**Do not upload `keepactive-full-1.1.0.zip` to the Chrome Web Store.** It requests `nativeMessaging`, and the helper is not distributed through the store.
+**Do not upload `keepactive-full-1.1.1.zip` to the Chrome Web Store.** It requests `nativeMessaging`, and the helper is not distributed through the store.
 
 ---
 
@@ -340,7 +340,7 @@ Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/
 - [ ] Create the listing with section 3 copy, category, language, the three screenshots and promo tile.
 - [ ] Privacy URL, homepage and support URL from section 7.
 - [ ] Permission justifications (section 4) and privacy practices questionnaire (section 5); certify data-use disclosures.
-- [ ] Upload **`dist/keepactive-store-1.1.0.zip`** only (SHA256 in section 1) and submit for review.
+- [ ] Upload **`dist/keepactive-store-1.1.1.zip`** only (SHA256 in section 1) and submit for review.
 - [ ] After approval, install from the live listing and repeat the store smoke checks.
 
 Submitted 10 November 2026; approved and published 11 November 2026.

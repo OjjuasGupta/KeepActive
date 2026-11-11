@@ -199,10 +199,10 @@ async function testStore(extensionId) {
   const worker = await attachServiceWorker(extensionId);
 
   const manifest = await popup.evaluate('chrome.runtime.getManifest()');
-  check('manifest version is 1.1.0', manifest.version === '1.1.0', manifest.version);
+  check('manifest version is 1.1.1', manifest.version === '1.1.1', manifest.version);
   check('store manifest has no nativeMessaging', !manifest.permissions.includes('nativeMessaging'));
   check('store popup hides native helper card', await popup.evaluate('document.getElementById("nativeCard").hidden'));
-  check('popup shows version 1.1.0', (await popup.evaluate('document.querySelector(".version-pill").textContent')).includes('1.1.0'));
+  check('popup shows version 1.1.1', (await popup.evaluate('document.querySelector(".version-pill").textContent')).includes('1.1.1'));
 
   // Start from a known state even if a previous run was interrupted.
   await sendMessage(popup, { type: 'RESET_ALL' });
@@ -315,7 +315,7 @@ async function testStore(extensionId) {
 
   if (worker) {
     const workerVersion = await worker.evaluate('chrome.runtime.getManifest().version');
-    check('service worker is alive and reports version', workerVersion === '1.1.0', workerVersion);
+    check('service worker is alive and reports version', workerVersion === '1.1.1', workerVersion);
     worker.close();
   }
 

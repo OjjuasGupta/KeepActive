@@ -2,6 +2,11 @@
 
 All notable changes to KeepActive are recorded here. Versions match `manifest.json`.
 
+## 1.1.1 — 2026-11-11
+
+### Changed
+- English store name is now "KeepActive: Keep Active on Teams & Keep Screen Awake" so the listing matches the two-word search "keep active". No code changes.
+
 ## 1.1.0 — 2026-11-10 (first Chrome Web Store submission)
 
 ### Added

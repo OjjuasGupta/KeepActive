@@ -7,8 +7,8 @@ KeepActive ships in two variants:
 
 | Variant | Purpose | Native helper |
 |---------|---------|---------------|
-| **Store build** (`dist/keepactive-store-1.1.0.zip`) | Chrome Web Store / normal browser use | Not included, not declared |
-| **Full build** (`dist/keepactive-full-1.1.0.zip`) | Local/developer install with Teams Desktop support | Optional Python helper included |
+| **Store build** (`dist/keepactive-store-1.1.1.zip`) | Chrome Web Store / normal browser use | Not included, not declared |
+| **Full build** (`dist/keepactive-full-1.1.1.zip`) | Local/developer install with Teams Desktop support | Optional Python helper included |
 
 > **Responsible use**
 > - KeepActive is intended for legitimate passive work: presentations,
@@ -57,7 +57,7 @@ Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/kee
 
 ## Install (full build)
 
-1. Build or unpack `dist/keepactive-full-1.1.0.zip` into a permanent folder.
+1. Build or unpack `dist/keepactive-full-1.1.1.zip` into a permanent folder.
 2. Load that folder unpacked at `chrome://extensions`.
 3. Copy the extension ID shown on the card.
 4. Install the native helper:
@@ -133,9 +133,9 @@ cd tools
 
 Outputs:
 
-- `dist/keepactive-store-1.1.0.zip`
-- `dist/keepactive-full-1.1.0.zip`
-- `dist/keepactive-store-1.1.0/` and `dist/keepactive-full-1.1.0/` unpacked folders
+- `dist/keepactive-store-1.1.1.zip`
+- `dist/keepactive-full-1.1.1.zip`
+- `dist/keepactive-store-1.1.1/` and `dist/keepactive-full-1.1.1/` unpacked folders
 
 The store package excludes `native/`, `tools/`, `manifest.full.json`, source
 documentation, icon generators, GIF/SVG assets, and audit files. The build

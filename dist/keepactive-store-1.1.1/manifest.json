@@ -1,18 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "KeepActive (Full)",
-  "short_name": "KeepActive",
+  "name": "__MSG_extName__",
   "default_locale": "en",
-  "version": "1.1.0",
-  "description": "Keeps your display awake, sends small activity events to Teams Web, and includes an optional native desktop helper.",
+  "version": "1.1.1",
+  "description": "__MSG_extDescription__",
   "minimum_chrome_version": "116",
 
   "permissions": [
     "power",
     "idle",
     "alarms",
-    "storage",
-    "nativeMessaging"
+    "storage"
   ],
 
   "host_permissions": [
@@ -25,7 +23,7 @@
   },
 
   "action": {
-    "default_title": "KeepActive (Full)",
+    "default_title": "KeepActive",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -68,7 +66,7 @@
       "suggested_key": {
         "default": "Alt+Shift+S"
       },
-      "description": "Toggle KeepActive on/off"
+      "description": "__MSG_cmdToggle__"
     }
   },
 

@@ -3,7 +3,7 @@
   "name": "KeepActive (Full)",
   "short_name": "KeepActive",
   "default_locale": "en",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Keeps your display awake, sends small activity events to Teams Web, and includes an optional native desktop helper.",
   "minimum_chrome_version": "116",
 

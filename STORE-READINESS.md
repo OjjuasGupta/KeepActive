@@ -2,7 +2,7 @@
 
 Last verified: 10 November 2026  
 Test browsers: Chrome 157.0.8103.50 on Windows (original pass); Chrome for Testing 157.0.8103.38 headless on Linux (PRD-completion pass)  
-Status: **Code, UI, packaging, store assets and policy pages are ready.** Remaining: enable GitHub Pages for `docs/` (see section 7), complete the listing in the Chrome Web Store developer console, and submit. Nothing has been submitted. See section 11 for the final checklist.
+Status: **Live on the Chrome Web Store (approved 11 November 2026):** https://chromewebstore.google.com/detail/keepactive-keep-screen-aw/akcdhlnelghhjpcmnabolcdggbebnlka
 
 ### PRD completion pass (10 November 2026)
 
@@ -343,4 +343,4 @@ Sources: [Tiny Struggles release checklist](https://www.tinystruggles.com/posts/
 - [ ] Upload **`dist/keepactive-store-1.1.0.zip`** only (SHA256 in section 1) and submit for review.
 - [ ] After approval, install from the live listing and repeat the store smoke checks.
 
-No Chrome Web Store submission has been made.
+Submitted 10 November 2026; approved and published 11 November 2026.

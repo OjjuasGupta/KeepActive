@@ -47,6 +47,8 @@ KeepActive ships in two variants:
 
 ## Install (store build)
 
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/keepactive-keep-screen-aw/akcdhlnelghhjpcmnabolcdggbebnlka). To load it unpacked instead:
+
 1. Open `chrome://extensions`.
 2. Enable **Developer mode**.
 3. Click **Load unpacked** and select the store package folder, or install the

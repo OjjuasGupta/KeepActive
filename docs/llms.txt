@@ -1,0 +1,19 @@
+# KeepActive: Keep Screen Awake & Stay Active
+
+> Free Chrome extension that keeps your screen awake while Chrome is running and sends small, human-paced activity events to Microsoft Teams on the web, on a schedule you choose. Local-only: no accounts, analytics or tracking.
+
+- Install: https://chromewebstore.google.com/detail/keepactive-keep-screen-aw/akcdhlnelghhjpcmnabolcdggbebnlka
+- Homepage: https://ojjuasgupta.github.io/KeepActive/
+- Privacy policy: https://ojjuasgupta.github.io/KeepActive/privacy.html
+- Support: https://github.com/OjjuasGupta/KeepActive/issues
+
+## Facts
+
+- Price: free. Requires Chrome 116 or newer.
+- Keeps the display awake via Chrome's power API; does not override OS lock, Intune, Group Policy, MDM or EDR.
+- Teams on the web only (teams.microsoft.com, teams.cloud.microsoft); not the Teams desktop app.
+- Does not guarantee a Teams presence status; Microsoft controls presence.
+- Features: work schedules (including overnight shifts), Smart Pause when you use the keyboard or mouse, Alt+Shift+S toggle, session safety limit.
+- Never reads messages, types text, or clicks buttons, links or inputs.
+- Listing available in 15 languages: en, de, es, fr, it, pt_BR, nl, pl, ja, ko, zh_CN, ru, hi, id, tr.
+- Not affiliated with Microsoft. Unrelated to the KeepActive (Kickidler) employee-monitoring software.
